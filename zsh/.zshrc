@@ -122,6 +122,8 @@ zplug 'plugins/colored-man-pages', from:oh-my-zsh
 zplug 'plugins/completion', from:oh-my-zsh
 zplug 'plugins/extract', from:oh-my-zsh
 zplug 'plugins/fancy-ctrl-z', from:oh-my-zsh
+zplug 'plugins/osx', from:oh-my-zsh
+zplug 'plugins/sudo', from:oh-my-zsh
 zplug 'plugins/git', from:oh-my-zsh, if:'which git'
 #zplug 'plugins/gpg-agent', from:oh-my-zsh, if:'which gpg-agent'
 zplug 'plugins/httpie', from:oh-my-zsh, if:'which httpie'

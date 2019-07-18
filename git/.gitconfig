@@ -45,6 +45,6 @@
 	enabled = true
 
 [user]
-	name = Matthias Vallentin
-	email = matthias@vallentin.net
-	signingkey = 0xFBAC7C9C2BF7F1AA
+	name = Bohdan Pavlov 
+	email = bohdan.pavlov.o@gmail.com
+	signingkey = 0xAE0D6A60BDBBEA7F

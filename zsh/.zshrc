@@ -127,7 +127,6 @@ zplug 'plugins/sudo', from:oh-my-zsh
 zplug 'plugins/git', from:oh-my-zsh, if:'which git'
 #zplug 'plugins/gpg-agent', from:oh-my-zsh, if:'which gpg-agent'
 zplug 'plugins/httpie', from:oh-my-zsh, if:'which httpie'
-zplug 'plugins/nanoc', from:oh-my-zsh, if:'which nanoc'
 zplug 'plugins/nmap', from:oh-my-zsh, if:'which nmap'
 zplug 'plugins/tmux', from:oh-my-zsh, if:'which tmux'
 

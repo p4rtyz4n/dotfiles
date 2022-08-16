@@ -414,6 +414,9 @@ if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
 
+export HOMEBREW_GITHUB_API_TOKEN=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
+
+
 # Setup GPG for user accounts.
 if [[ $UID != 0 ]]; then
   export GPG_TTY=$(tty);

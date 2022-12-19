@@ -6,6 +6,7 @@
 	diffFilter = delta --color-only
 
 [delta]
+	line-numbers = true
 	navigate = true  # use n and N to move between diff sections
 	light = false
 
@@ -25,12 +26,14 @@
 	gpgsign = true
 
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
 
 [merge]
 	conflictstyle = diff3
+	ff = false
 
 [diff]
 	colorMoved = default
@@ -51,3 +54,5 @@
 	
 [commit]
 	gpgsign = true
+[init]
+	defaultBranch = main

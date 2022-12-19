@@ -136,7 +136,9 @@ zplug 'jeffreytse/zsh-vi-mode'
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
 zplug "junegunn/fzf", use:"shell/key-bindings.zsh"
 zplug 'knu/zsh-manydots-magic', use:manydots-magic, defer:3
-zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
+fi
 zplug 'seebi/dircolors-solarized', ignore:"*", as:plugin
 zplug 'Tarrasch/zsh-bd'
 zplug 'zsh-users/zsh-autosuggestions'
@@ -414,8 +416,8 @@ if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
 
-export HOMEBREW_GITHUB_API_TOKEN=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
-
+export HOMEBREW_GITHUB_API_TOKEN=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
+eval "$(/opt/homebrew/bin/brew shellenv)"  
 
 # Setup GPG for user accounts.
 if [[ $UID != 0 ]]; then
@@ -426,3 +428,12 @@ if [[ $UID != 0 ]]; then
     gpg-connect-agent updatestartuptty /bye > /dev/null
   fi
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export DENO_INSTALL="/Users/bohdanpavlov/.deno"
+export DOTNET_CLI_TELEMETRY_OPTOUT="1"
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion

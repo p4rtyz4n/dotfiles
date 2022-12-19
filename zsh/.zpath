@@ -19,7 +19,9 @@ path=(
   /usr/X11R6/bin
   /usr/ucb            # SunOS
   /usr/sww/bin        # SunOS
-  #/usr/local/opt/coreutils/libexec/gnu
+  /Users/bohdanpavlov/.deno/bin
+#  /opt/homebrew/bin #homebrew
+#/usr/local/opt/coreutils/libexec/gnu
   #/usr/local/opt/e2fsprogs/bin
 )
 
@@ -50,7 +52,7 @@ case $OSTYPE in
     ;;
 esac
 
-# Go
+# Gov
 export GOPATH="$HOME/.go"
 path=( "$GOPATH/bin" $path )
 

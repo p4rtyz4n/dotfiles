@@ -99,13 +99,13 @@ custom_on_attach = function(client, bufnr)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts("Show signature help"))
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts("Go to references"))
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts("Format buffer"))
-  vim.keymap.set('v', '<leader>f', vim.lsp.buf.range_formatting, opts("Format range"))
+  vim.keymap.set('v', '<leader>f', vim.lsp.buf.format, opts("Format selection"))
   -- Universal keymaps.
   vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts("Show diagnostics"))
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts("Go to previous diagnostic"))
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts("Go to next diagnostic"))
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts("Perform code action"))
-  vim.keymap.set('v', '<leader>ca', vim.lsp.buf.range_code_action, opts("Perform code action"))
+  vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, opts("Perform code action"))
 end
 
 return require('packer').startup(function(use)
@@ -123,24 +123,6 @@ return require('packer').startup(function(use)
 
   -- Facilitate whitespace management
   use 'ntpeters/vim-better-whitespace'
-
-  -- Automatic dark mode switching on macOS.
-  use {
-    'f-person/auto-dark-mode.nvim',
-    config = function()
-      local auto_dark_mode = require('auto-dark-mode')
-      auto_dark_mode.setup{
-        update_interval = 3000,
-        set_dark_mode = function()
-          vim.api.nvim_set_option('background', 'dark')
-        end,
-        set_light_mode = function()
-          vim.api.nvim_set_option('background', 'light')
-        end,
-      }
-      auto_dark_mode.init()
-    end,
-  }
 
   -- UI to select things (files, grep results, open buffers...)
   use {
@@ -253,14 +235,19 @@ return require('packer').startup(function(use)
 
   -- Colorscheme.
   use {
-    'rebelot/kanagawa.nvim',
+    'catppuccin/nvim',
+    as = 'catppuccin',
     config = function()
-      require('kanagawa').setup({
-        transparent = true, -- do not set background color
+      require('catppuccin').setup({
+        background = {
+          light = "latte",
+          dark = "mocha",
+        },
       })
+      vim.o.background = 'dark'
       vim.o.termguicolors = true
       -- vim.cmd 'highlight WinSeparator NONE'
-      vim.cmd 'colorscheme kanagawa'
+      vim.cmd.colorscheme 'catppuccin'
     end
   }
 
@@ -299,7 +286,7 @@ return require('packer').startup(function(use)
           require("null-ls").builtins.formatting.stylua,
           require("null-ls").builtins.diagnostics.markdownlint,
           require("null-ls").builtins.diagnostics.shellcheck,
-          require("null-ls").builtins.diagnostics.vale,
+          --require("null-ls").builtins.diagnostics.vale,
         },
         on_attach = custom_on_attach
       })
@@ -347,6 +334,9 @@ return require('packer').startup(function(use)
       vim.g.R_assign = 0
     end
   }
+
+  -- Pair programming neatness.
+  use 'jbyuki/instant.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

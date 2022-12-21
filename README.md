@@ -6,7 +6,7 @@
              [tmux](https://github.com/tmux/tmux)
 - **Shell**: [Fish](https://fishshell.com/)
 - **Editor**: [NeoVim](https://neovim.io/)
-- **Colorscheme**: [Catppuccin](https://github.com/catppuccin/catppuccin)
+- **Colorscheme**: [Gruvbox](https://github.com/morhetz/gruvbox)
 - **Font**: [Fira Code](https://github.com/tonsky/FiraCode) from [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
 
 On macOS, [Homebrew](https://brew.sh) is the package manager.
@@ -17,7 +17,7 @@ On macOS, [Homebrew](https://brew.sh) is the package manager.
 
 Clone this repository and bootstrap your system:
 
-    git clone git@github.com:mavam/dotfiles.git ~/.dotfiles
+    git clone git@github.com:p4rtyz4n/dotfiles.git ~/.dotfiles
     cd .dotfiles
     ./bootstrap
 

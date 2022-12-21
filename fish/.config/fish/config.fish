@@ -7,7 +7,6 @@ switch (uname)
   case Darwin
     fish_add_path -g /opt/homebrew/bin    # Homebrew
     fish_add_path -g /usr/X11R6/bin       # Apple's X11
-    fish_add_path -g /Library/TeX/texbin  # MacTeX
 end
 
 # Rust
@@ -51,11 +50,6 @@ if command -sq brew
     fish_add_path -g $llvm_prefix
   end
 end
-
-# CMake
-set -x CMAKE_GENERATOR Ninja
-set -x CMAKE_C_COMPILER_LAUNCHER ccache
-set -x CMAKE_CXX_COMPILER_LAUNCHER ccache
 
 # Docker
 set -x DOCKER_BUILDKIT 1
@@ -108,16 +102,16 @@ if status is-interactive
   gpgconf --launch gpg-agent
 
   # Kanagawa color scheme: https://github.com/rebelot/kanagawa.nvim/
-  set -l foreground DCD7BA
-  set -l selection 2D4F67
-  set -l comment 727169
-  set -l red C34043
-  set -l orange FF9E64
-  set -l yellow C0A36E
-  set -l green 76946A
-  set -l purple 957FB8
-  set -l cyan 7AA89F
-  set -l pink D27E99
+  #set -l foreground DCD7BA
+  #set -l selection 2D4F67
+  #set -l comment 727169
+  #set -l red C34043
+  #set -l orange FF9E64
+  #set -l yellow C0A36E
+  #set -l green 76946A
+  #set -l purple 957FB8
+  #set -l cyan 7AA89F
+  #set -l pink D27E99
   # Syntax Highlighting Colors
   set -g fish_color_normal $foreground
   set -g fish_color_command $cyan

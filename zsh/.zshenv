@@ -9,7 +9,9 @@ if [[ -f ~/.zpath ]]; then
 fi
 
 # Editor
-if which vim &> /dev/null; then
+if which nvim &> /dev/null; then
+  export EDITOR="nvim"
+elif which vim &> /dev/null; then
   export EDITOR="vim"
 elif which vi &> /dev/null; then
   export EDITOR="vi"
@@ -21,7 +23,7 @@ export PAGER="less -S"
 
 # Version control software.
 export CVS_RSH="ssh"
-export CVSEDITOR="vim"
+export CVSEDITOR=$EDITOR
 export RSYNC_RSH="ssh"
 
 # OS-specific environment.
@@ -36,22 +38,8 @@ case $OSTYPE in
     setopt no_global_rcs
     # Opt out of Homebrew analytics.
     export HOMEBREW_NO_ANALYTICS=1
-    # Default to Homebrew-provided cutting-edge C++ compiler 
-    llvm_prefix=$(brew --prefix llvm 2> /dev/null)
-    if [[ -d "${llvm_prefix}" ]]; then
-      export CC="${llvm_prefix}/bin/clang"
-      export CXX="${llvm_prefix}/bin/clang++"
-      export CPPFLAGS="-isystem ${llvm_prefix}/include ${CPPFLAGS}"
-      export CXXFLAGS="-isystem ${llvm_prefix}/include/c++/v1 ${CXXFLAGS}"
-      export LDFLAGS="-Wl,-rpath,${llvm_prefix} ${LDFLAGS}"
-    fi
     ;;
 esac
-
-# Sane CMake defaults
-export CMAKE_GENERATOR="Ninja"
-export CMAKE_C_COMPILER_LAUNCHER="ccache"
-export CMAKE_CXX_COMPILER_LAUNCHER="ccache"
 
 # Docker
 export DOCKER_BUILDKIT=1

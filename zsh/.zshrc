@@ -133,11 +133,10 @@ zplug 'plugins/tmux', from:oh-my-zsh, if:'which tmux'
 #zplug 'b4b4r07/enhancd', use:init.sh
 zplug 'b4b4r07/zsh-vimode-visual', defer:3
 zplug 'jeffreytse/zsh-vi-mode'
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
 zplug "junegunn/fzf", use:"shell/key-bindings.zsh"
 zplug 'knu/zsh-manydots-magic', use:manydots-magic, defer:3
 if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-  zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
+  zplug 'romkatv/powerlevel10k', as:theme, depth:1, use:powerlevel10k.zsh-theme
 fi
 zplug 'seebi/dircolors-solarized', ignore:"*", as:plugin
 zplug 'Tarrasch/zsh-bd'
@@ -273,23 +272,6 @@ if [[ $OSTYPE = darwin* ]]; then
     && killall Finder"
   alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true \
     && killall Finder"
-  # Combine PDFs on the command line.
-  pdfcat() {
-    if [[ $# -lt 2 ]]; then
-      echo "usage: $0 merged.pdf input0.pdf [input1.pdf ...]" > /dev/stderr
-      return 1
-    fi
-    local output="$1"
-    shift
-    # Try pdfunite first (from Homebrew package poppler), because it's much
-    # faster and doesn't perform stupid page rotations.
-    if which pdfunite > /dev/null 2>&1; then
-      pdfunite "$@" "$output"
-    else
-      local join='/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py'
-      "$join" -o "$output" "$@" && open "$output"
-    fi
-  }
 fi
 
 # =============================================================================
@@ -360,24 +342,6 @@ zstyle ':completion:*:kill:*'   force-list always
 #                                    Other
 # =============================================================================
 
-# Utility that prints out lines that are common among $# files.
-intersect() {
-  local sort='sort -S 1G'
-  case $# in
-    (0) true;;
-    (2) $sort -u "$1"; $sort -u "$2";;
-    (*) $sort -u "$1"; shift; intersection "$@";;
-  esac | $sort | uniq -d
-}
-
-# Changes an iTerm profile by sending a proprietary escape code that iTerm
-# intercepts. This function additionally updates ITERM_PROFILE environment
-# variable.
-iterm-profile() {
-  echo -ne "\033]50;SetProfile=$1\a"
-  export ITERM_PROFILE="$1"
-}
-
 # Convenience function to update system applications and user packages.
 update() {
   # sudoe once
@@ -394,10 +358,6 @@ update() {
   # Homebrew
   brew upgrade
   brew cleanup
-  # Ruby
-  gem update --system
-  gem update
-  gem cleanup
   # npm
   npm install npm -g
   npm update -g

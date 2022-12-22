@@ -274,6 +274,77 @@ if [[ $OSTYPE = darwin* ]]; then
     && killall Finder"
 fi
 
+alias s="kitty +kitten ssh"
+
+  # alias: git
+alias g="git"
+alias ga="git add"
+alias gaa="git add --all"
+alias gb="git branch"
+alias gbd="git branch -D"
+alias gbl="git blame"
+alias gc="git commit -v"
+alias gc!="git commit -v --amend"
+alias gcn!="git commit -v --amend --no-edit"
+alias gca="git commit -a -v"
+alias gca!="git commit -a -v --amend"
+alias gcan!="git commit -a -v --no-edit --amend"
+alias gcans!="git commit -a -v -s --no-edit --amend"
+alias gcl="git clone --recursive"
+alias gcf="git config --list"
+alias gclean="git clean -fd"
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias gcom="git checkout main"
+alias gcp="git cherry-pick"
+alias gcpa="git cherry-pick --abort"
+alias gcpc="git cherry-pick --continue"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gf="git fetch"
+alias gfa="git fetch --all --prune"
+alias gfo="git fetch origin"
+alias gl="git log"
+alias gla="git log --all --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\""
+alias glg="git log --graph"
+alias glp="git log --patch"
+alias gm="git merge"
+alias gp="git push"
+alias gpu="git push --set-upstream origin (git symbolic-ref HEAD | sed \"s/refs\/heads\///\")"
+alias gpf="git push --force"
+alias gpt="git push --tags"
+alias gptf="git push --tags --force"
+alias gpoat="git push origin --all && git push origin --tags"
+alias gpoatf="git push origin --all -f && git push origin --tags -f"
+alias gpl="git pull"
+alias gplo="git pull origin"
+alias gplom="git pull origin master"
+alias gplu="git pull upstream"
+alias gplum="git pull upstream master"
+alias gr="git remote -v"
+alias gra="git remote add"
+alias grau="git remote add upstream"
+alias grrm="git remote remove"
+alias grmv="git remote rename"
+alias grset="git remote set-url"
+alias grb="git rebase"
+alias grbpr="git rebase --interactive --rebase-merges $(git merge-base origin/master HEAD)"
+alias grba="git rebase --abort"
+alias grbc="git rebase --continue"
+alias gr="git reset"
+alias gru="git reset @{u}"
+alias grh="git reset --hard"
+alias grhu="git reset --hard @{u}"
+alias grhh="git reset --hard HEAD"
+alias gst="git status"
+alias gsts="git status -s"
+alias gsh="git stash push"
+alias gsha="git stash apply"
+alias gshd="git stash drop"
+alias gshp="git stash pop"
+alias gsu="git submodule update"
+alias gts="git tag -s"
+
 # =============================================================================
 #                                Key Bindings
 # =============================================================================
@@ -385,13 +456,15 @@ if [[ $UID != 0 ]]; then
   if which gpgconf > /dev/null 2>&1; then
     export GPG_AGENT_INFO=$(gpgconf --list-dirs agent-socket)
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+    #gpgconf --launch gpg-agent > /dev/null
     gpg-connect-agent updatestartuptty /bye > /dev/null
   fi
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export DENO_INSTALL="/Users/bohdanpavlov/.deno"
+export DENO_INSTALL="$HOME/.deno"
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
 export NVM_DIR="$HOME/.nvm"

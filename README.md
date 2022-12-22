@@ -4,7 +4,7 @@
 
 - **Terminals**: [Kitty](https://sw.kovidgoyal.net/kitty/) and
              [tmux](https://github.com/tmux/tmux)
-- **Shell**: [Fish](https://fishshell.com/)
+- **Shell**: [Zsh](https://www.zsh.org)
 - **Editor**: [NeoVim](https://neovim.io/)
 - **Colorscheme**: [Gruvbox](https://github.com/morhetz/gruvbox)
 - **Font**: [Fira Code](https://github.com/tonsky/FiraCode) from [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)

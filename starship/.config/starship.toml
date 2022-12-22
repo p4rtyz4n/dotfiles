@@ -1,6 +1,0 @@
-# Do not waste vertical space.
-add_newline = false
-
-[directory]
-repo_root_style = "bold blue"
-truncation_symbol = "…/"

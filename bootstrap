@@ -102,30 +102,6 @@ setup_neovim() {
   nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
 }
 
-setup_fish() {
-  fish=$(which fish 2> /dev/null)
-  if [ -z "$fish" ]; then
-    log "fish not found :-("
-  else
-    if grep -Fq "$fish" /etc/shells; then
-      log "skipping /etc/shells, $fish already there"
-    else
-      log "adding $fish to /etc/shells"
-      echo "$fish" | sudo tee -a /etc/shells > /dev/null
-    fi
-    log "setting fish as login shell"
-    login_shell="$(dscl . -read ~ UserShell | cut -f 2 -d " ")"
-    if [ "$login_shell" = "$fish" ]; then
-      log "$fish is already your login shell"
-    else
-      sudo chsh -s "$fish" "$USER"
-    fi
-    if which fisher 2> /dev/null; then
-      log "updating fish plugins via fisher"
-      fisher update
-    fi
-  fi
-}
 
 main() {
   export PATH="/opt/homebrew/bin:$PATH"
@@ -154,9 +130,6 @@ main() {
       fi
       ;;
   esac
-  if ask "setup fish?"; then
-    setup_fish
-  fi
   if ask "setup NeoVim?"; then
     setup_neovim
   fi

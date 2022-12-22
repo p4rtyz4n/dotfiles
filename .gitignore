@@ -1,9 +1,4 @@
 *.sw?
-ccache/.ccache/ccache/
-fish/.config/fish/completions/
-fish/.config/fish/conf.d/
-fish/.config/fish/fish_variables
-fish/.config/fish/functions/
 karabiner/.config/karabiner/automatic_backups/
 neovim/.config/nvim/plugin/
 tmux/.tmux/plugins/

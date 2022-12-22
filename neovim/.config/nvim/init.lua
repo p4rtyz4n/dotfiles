@@ -167,7 +167,6 @@ return require('packer').startup(function(use)
           'c';
           'comment';
           'cpp';
-          'fish';
           'json';
           'lua';
           'markdown';

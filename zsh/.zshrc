@@ -276,7 +276,8 @@ fi
 
 alias s="kitty +kitten ssh"
 
-  # alias: git
+
+# alias: git
 alias g="git"
 alias ga="git add"
 alias gaa="git add --all"
@@ -328,7 +329,7 @@ alias grrm="git remote remove"
 alias grmv="git remote rename"
 alias grset="git remote set-url"
 alias grb="git rebase"
-alias grbpr="git rebase --interactive --rebase-merges $(git merge-base origin/master HEAD)"
+alias grbpr="git rebase --interactive --rebase-merges \$(git merge-base origin/master HEAD)"
 alias grba="git rebase --abort"
 alias grbc="git rebase --continue"
 alias gr="git reset"

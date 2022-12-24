@@ -99,7 +99,9 @@ setup_tmux() {
 
 setup_neovim() {
   log "updating NeoVim plugins via Packer"
-  nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
+  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 
+  ln -s ~/.config/nvim_custom ~/.config/nvim/lua/custom
+  #nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
 }
 
 

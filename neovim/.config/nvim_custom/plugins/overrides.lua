@@ -63,4 +63,8 @@ M.nvimtree = {
   },
 }
 
+M.telescope = {
+  extensions_list = { "themes", "terms", "fzf" },
+}
+
 return M

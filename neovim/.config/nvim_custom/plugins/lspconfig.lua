@@ -12,10 +12,14 @@ local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
   if client.name == "omnisharp" then
-      vim.keymap.set("n", "gd", "<Cmd>lua omnisharp_extended.lsp_definitions()<CR>", opts)
+      vim.keymap.set("n", "gd", "<Cmd>lua require('omnisharp_extended').lsp_definitions()<CR>", opts)
   else
       vim.keymap.set("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
   end
+  -- replaced with lsp_lines
+  vim.diagnostic.config({
+    virtual_text = false,
+  })
 
 end
 

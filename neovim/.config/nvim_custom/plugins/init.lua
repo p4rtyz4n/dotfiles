@@ -21,21 +21,6 @@ return {
     end,
   },
 
-  -- overrde plugin configs
-  ["nvim-treesitter/nvim-treesitter"] = {
-    override_options = overrides.treesitter,
-  },
-
-  ["williamboman/mason.nvim"] = {
-    after = "omnisharp-extended-lsp.nvim",
-    override_options = overrides.mason,
-  },
-
-  ["kyazdani42/nvim-tree.lua"] = {
-    override_options = overrides.nvimtree,
-  },
-
-  -- Install a plugin
   ["max397574/better-escape.nvim"] = {
     event = "InsertEnter",
     config = function()
@@ -43,14 +28,48 @@ return {
     end,
   },
 
-  -- code formatting, linting etc
---  ["jose-elias-alvarez/null-ls.nvim"] = {
---    after = "nvim-lspconfig",
---    config = function()
---      require "custom.plugins.null-ls"
---    end,
---  },
+  ["hrsh7th/cmp-nvim-lsp-signature-help"] = {},
 
-  -- remove plugin
-  -- ["hrsh7th/cmp-path"] = false,
+  ["j-hui/fidget.nvim"] = {
+    after = "nvim-lspconfig",
+  },
+
+  ["nvim-telescope/telescope-fzf-native.nvim"] = {
+    run = "make",
+    cond = vim.fn.executable 'make' == 1,
+    after = "telescope.nvim"
+  },
+
+  -- code formatting, linting etc
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+    after = "nvim-lspconfig",
+    config = function()
+      require "custom.plugins.null-ls"
+    end,
+  },
+
+  ["https://git.sr.ht/~whynothugo/lsp_lines.nvim"] = {
+    after = "nvim-lspconfig",
+    config = function()
+      require("lsp_lines").setup();
+    end,
+  },
+
+  -- overrde plugin configs
+  ["nvim-telescope/telescope.nvim"] = {
+      override_options = overrides.telescope,
+  },  
+
+  ["nvim-treesitter/nvim-treesitter"] = {
+    override_options = overrides.treesitter,
+  },
+  
+  ["williamboman/mason.nvim"] = {
+    after = "omnisharp-extended-lsp.nvim",
+    override_options = overrides.mason,
+  },
+  
+  ["kyazdani42/nvim-tree.lua"] = {
+    override_options = overrides.nvimtree,
+  },
 }

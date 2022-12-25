@@ -7,7 +7,15 @@ M.treesitter = {
     "html",
     "css",
     "javascript",
-    "c",
+    "typescript",
+    "json",
+    "bash",
+    "c_sharp",
+    "diff",
+    "dockerfile",
+    "rust",
+    "yaml",
+    "sql"
   },
 }
 
@@ -22,6 +30,20 @@ M.mason = {
     "html-lsp",
     "typescript-language-server",
     "deno",
+
+    "bash-language-server",
+    "dockerfile-language-server",
+    "json-lsp",
+    "omnisharp",
+    "rust-analyzer",
+    "rustfmt",
+    "yaml-language-server",
+    "fantomas",
+    --eslint-lsp
+    --eslint_d
+    -- shell
+    "shfmt",
+    "shellcheck",
   },
 }
 

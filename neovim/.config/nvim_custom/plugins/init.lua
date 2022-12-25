@@ -2,10 +2,19 @@ local overrides = require "custom.plugins.overrides"
 
 return {
 
+  ["ThePrimeagen/vim-be-good"] = {}, -- :VimBeGood
+
+  ["Hoffs/omnisharp-extended-lsp.nvim"] = {},
+
+  ["williamboman/mason-lspconfig.nvim"] = {
+    after = "mason.nvim",
+    ensure_installed = { "sumneko_lua", "rust_analyzer", "omnisharp" },
+  },
   -- ["goolord/alpha-nvim"] = { disable = false } -- enables dashboard
 
   -- Override plugin definition options
   ["neovim/nvim-lspconfig"] = {
+    after = "mason-lspconfig.nvim",
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.plugins.lspconfig"
@@ -18,6 +27,7 @@ return {
   },
 
   ["williamboman/mason.nvim"] = {
+    after = "omnisharp-extended-lsp.nvim",
     override_options = overrides.mason,
   },
 
@@ -34,12 +44,12 @@ return {
   },
 
   -- code formatting, linting etc
-  ["jose-elias-alvarez/null-ls.nvim"] = {
-    after = "nvim-lspconfig",
-    config = function()
-      require "custom.plugins.null-ls"
-    end,
-  },
+--  ["jose-elias-alvarez/null-ls.nvim"] = {
+--    after = "nvim-lspconfig",
+--    config = function()
+--      require "custom.plugins.null-ls"
+--    end,
+--  },
 
   -- remove plugin
   -- ["hrsh7th/cmp-path"] = false,

@@ -1,8 +1,7 @@
 local on_attach_from_lsp = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 local omnisharp_extended = require("omnisharp_extended")
-
-local lspconfig = require "lspconfig"
+local lspconfig = require("lspconfig")
 
 local servers = { "html", "cssls", "tsserver", "rust_analyzer" }
 

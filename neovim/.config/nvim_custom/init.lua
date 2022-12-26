@@ -6,3 +6,7 @@ local autocmd = vim.api.nvim_create_autocmd
 --   pattern = "*",
 --   command = "tabdo wincmd =",
 -- })
+
+-- hybrid line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true

@@ -10,9 +10,7 @@ return {
     after = "mason.nvim",
     ensure_installed = { "sumneko_lua", "rust_analyzer", "omnisharp" },
   },
-  -- ["goolord/alpha-nvim"] = { disable = false } -- enables dashboard
 
-  -- Override plugin definition options
   ["neovim/nvim-lspconfig"] = {
     after = "mason-lspconfig.nvim",
     config = function()
@@ -55,6 +53,8 @@ return {
     end,
   },
 
+  ["stevearc/dressing.nvim"] = {},
+
   -- overrde plugin configs
   ["nvim-telescope/telescope.nvim"] = {
       override_options = overrides.telescope,
@@ -72,4 +72,58 @@ return {
   ["kyazdani42/nvim-tree.lua"] = {
     override_options = overrides.nvimtree,
   },
+
+  ["weilbith/nvim-code-action-menu"] = {
+    cmd = "CodeActionMenu"
+  },
+
+  ["antoinemadec/FixCursorHold.nvim"] = {},
+  ["sindrets/diffview.nvim"] = { 
+    after = 'plenary.nvim',
+    requires = 'nvim-lua/plenary.nvim' 
+    -- :h diffview-merge-tool
+    -- :h :DiffviewFileHistory
+    -- :DiffviewOpen, :DiffviewOpen origin/main...HEAD, :DiffviewOpen HEAD~4..HEAD~2
+    -- :h diffview-config-keymaps
+    -- :h diffview-actions
+  },
+
+
+  ["rouge8/neotest-rust"] = {
+  },
+  ["nvim-neotest/neotest"] = {
+    after = "neotest-rust",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "ouge8/neotest-rust",
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-rust") {
+            --  args = { "--no-capture" },
+          },
+        },
+      })
+    end,
+  },
+
+  --[[
+  ["jackMort/ChatGPT.nvim"] = {
+    config = function()
+      require("chatgpt").setup({
+        -- optional configuration
+      })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+  --]]
+  
+
 }

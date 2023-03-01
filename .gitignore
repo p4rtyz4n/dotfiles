@@ -4,3 +4,4 @@ neovim/.config/nvim/plugin/
 tmux/.tmux/plugins/
 vale/.config/vale/styles/
 .idea/
+.DS_Store

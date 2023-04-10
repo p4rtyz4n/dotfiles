@@ -134,7 +134,7 @@ zplug 'plugins/tmux', from:oh-my-zsh, if:'which tmux'
 zplug 'b4b4r07/zsh-vimode-visual', defer:3
 zplug 'jeffreytse/zsh-vi-mode'
 zplug "junegunn/fzf", use:"shell/key-bindings.zsh"
-zplug 'knu/zsh-manydots-magic', use:manydots-magic, defer:3
+#zplug 'knu/zsh-manydots-magic', use:manydots-magic, defer:3 
 if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
   zplug 'romkatv/powerlevel10k', as:theme, depth:1, use:powerlevel10k.zsh-theme
 fi
@@ -471,3 +471,5 @@ export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+source /Users/bohdanpavlov/.config/broot/launcher/bash/br

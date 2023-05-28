@@ -468,8 +468,7 @@ fi
 export DENO_INSTALL="$HOME/.deno"
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
+#todo:set into separate file
+export OPENAI_API_KEY="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"
+eval "$(fnm env --use-on-cd)"
 source /Users/bohdanpavlov/.config/broot/launcher/bash/br

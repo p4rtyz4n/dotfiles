@@ -469,6 +469,6 @@ export DENO_INSTALL="$HOME/.deno"
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
 #todo:set into separate file
-export OPENAI_API_KEY="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"
+export OPENAI_API_KEY=""
 eval "$(fnm env --use-on-cd)"
 source /Users/bohdanpavlov/.config/broot/launcher/bash/br

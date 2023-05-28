@@ -448,7 +448,7 @@ if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
 
-export HOMEBREW_GITHUB_API_TOKEN=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
+#export HOMEBREW_GITHUB_API_TOKEN=whatever
 eval "$(/opt/homebrew/bin/brew shellenv)"  
 
 # Setup GPG for user accounts.

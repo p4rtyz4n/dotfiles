@@ -471,4 +471,5 @@ export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 #todo:set into separate file
 export OPENAI_API_KEY=""
 eval "$(fnm env --use-on-cd)"
-source /Users/bohdanpavlov/.config/broot/launcher/bash/br
+source ~/.config/broot/launcher/bash/br
+source ~/.config/op/plugins.sh

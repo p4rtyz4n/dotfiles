@@ -16,7 +16,7 @@ path=(
   /usr/local/share/dotnet
   ~/.dotnet/tools
   /usr/X11R6/bin
-  /Users/bohdanpavlov/.deno/bin
+  ~/.deno/bin
 )
 
 # Man pages.

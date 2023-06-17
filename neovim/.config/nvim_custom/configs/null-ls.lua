@@ -7,7 +7,6 @@ end
 local b = null_ls.builtins
 
 local sources = {
-
   b.code_actions.gitsigns,
   -- webdev stuff
   b.formatting.deno_fmt,                                                    -- choosed deno for ts/js files cuz its very fast!

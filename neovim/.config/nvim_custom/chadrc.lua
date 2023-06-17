@@ -1,8 +1,8 @@
 local M = {}
 
 M.ui = {
-	--  theme_toggle = { "gruvchad" },
-	--  theme = "gruvchad",
+	theme_toggle = { "gruvchad", "gruvbox_light" },
+	theme = "gruvchad",
 
 	--transparency = false,
 }

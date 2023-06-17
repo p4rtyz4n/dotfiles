@@ -2,6 +2,7 @@ local on_attach_from_lsp = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 local omnisharp_extended = require("omnisharp_extended")
 local lspconfig = require("lspconfig")
+local util = require "lspconfig/util"
 
 local servers = { "html", "cssls", "tsserver", "rust_analyzer" }
 
@@ -34,6 +35,21 @@ for _, lsp in ipairs(servers) do
 end
 
 local pid = vim.fn.getpid()
+
+lspconfig.rust_analyzer.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	handlers = rounded_border_handlers,
+	filetypes = {"rust"},
+    root_dir = util.root_pattern ("Cargo.toml"),
+	settings = {
+		['rust-analyzer'] = {
+			cargo = {
+				allFeatures = true,
+			}
+		}
+	}
+})
 
 lspconfig.omnisharp.setup({
 	on_attach = on_attach,

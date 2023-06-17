@@ -3,47 +3,63 @@ local overrides = require("custom.configs.overrides")
 local plugins = {
 	{ "ThePrimeagen/vim-be-good" }, --:VimBeGood
 	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+			"Hoffs/omnisharp-extended-lsp.nvim"
+		},
+		config = function()
+			require("plugins.configs.lspconfig")
+			require("custom.configs.lspconfig")
+		end,
+	},
+	{
+		"williamboman/mason.nvim",
+		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+		opts = overrides.mason,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = {
+			"williamboman/mason.nvim"
+		},
+		opts = {
+			ensure_installed = { "lua_ls", "rust_analyzer", "omnisharp" },
+		},
+	},
+	{ "Hoffs/omnisharp-extended-lsp.nvim", ft = "cs" },
+	-- code formatting, linting etc
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		config = function()
+			require("custom.configs.null-ls")
+		end,
+	},
+	{
 		"j-hui/fidget.nvim",
 		dependencies = {
-			{
-				"neovim/nvim-lspconfig",
-				--	after = "mason-lspconfig.nvim",
-				dependencies = {
-					{
-						"williamboman/mason-lspconfig.nvim",
-						dependencies = {
-							{
-								"williamboman/mason.nvim",
-								dependencies = {
-									{ "Hoffs/omnisharp-extended-lsp.nvim" },
-								},
-								opts = overrides.mason,
-							},
-						},
-						opts = {
-							ensure_installed = { "lua_ls", "rust_analyzer", "omnisharp" },
-						},
-					},
-					-- code formatting, linting etc
-					{
-						"jose-elias-alvarez/null-ls.nvim",
-						config = function()
-							require("custom.configs.null-ls")
-						end,
-					},
-				},
-				config = function()
-					require("plugins.configs.lspconfig")
-					require("custom.configs.lspconfig")
-				end,
-			},
+			"neovim/nvim-lspconfig",
 		},
+		config = function()
+			require("fidget").setup()
+		end,
 	},
 	{
 		"max397574/better-escape.nvim",
 		event = "InsertEnter",
 		config = function()
 			require("better_escape").setup()
+		end,
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp-signature-help"
+		},
+		opts = function()
+			local options = require("plugins.configs.cmp")
+			options.sources.insert({ name = 'nvim_lsp_signature_help' })
+			return options
 		end,
 	},
 	{ "hrsh7th/cmp-nvim-lsp-signature-help" },
@@ -77,18 +93,20 @@ local plugins = {
 		"weilbith/nvim-code-action-menu",
 		cmd = "CodeActionMenu",
 	},
-
-	-- not tested
 	{
 		"sindrets/diffview.nvim",
 		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
+			"nvim-lua/plenary.nvim",
 		},
+		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewRefresh" },
 		-- :h diffview-merge-tool
 		-- :h :DiffviewFileHistory
 		-- :DiffviewOpen, :DiffviewOpen origin/main...HEAD, :DiffviewOpen HEAD~4..HEAD~2
 		-- :h diffview-config-keymaps
 		-- :h diffview-actions
+		config = function()
+			require("diffview").setup()
+		end,
 	},
 	{
 		"nvim-neotest/neotest",
@@ -141,5 +159,12 @@ local plugins = {
 			"nvim-telescope/telescope.nvim",
 		},
 	},
+	{
+		"rust-lang/rust.vim",
+		ft = "rust",
+		init = function()
+			vim.g.rustfmt_autosave = 1
+		end
+	}
 }
 return plugins

@@ -30,7 +30,6 @@ M.mason = {
     "html-lsp",
     "typescript-language-server",
     "deno",
-
     "bash-language-server",
     "dockerfile-language-server",
     "json-lsp",

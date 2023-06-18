@@ -56,11 +56,12 @@ local plugins = {
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp-signature-help"
 		},
-		--opts = function()
-		--	local options = require("plugins.configs.cmp")
-		--	options.sources.insert({ name = 'nvim_lsp_signature_help' })
-		--	return options
-		--end,
+		opts = function ()
+			local M = require "plugins.configs.cmp"
+			table.insert(M.sources, {name = "nvim_lsp_signature_help"})
+			table.insert(M.sources, {name = "crates"})
+			return M
+		end,
 	},
 	{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 	{ "stevearc/dressing.nvim" },

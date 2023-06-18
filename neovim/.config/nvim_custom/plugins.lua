@@ -167,11 +167,11 @@ local plugins = {
 		end
 	},
 	{
-		"simrat39/rust-tools.nvim",
+		"simrat39/rust-tools.nvim",  --todo: check how to us
 		ft = "rust",
 		dependencies = {
 			"neovim/nvim-lspconfig",
-			"mfussenegger/nvim-dap",
+			"mfussenegger/nvim-dap", --todo: check how to use
 		},
 		opts = function ()
 			return require "custom.configs.rust-tools"
@@ -182,6 +182,15 @@ local plugins = {
 	},
 	{
 		"mfussenegger/nvim-dap",
+	},
+	{
+		"saecki/crates.nvim",
+		ft = {"rust", "toml"},
+		config = function (_, opts)
+			local crates = require("crates")
+			crates.setup(opts)
+			crates.show()
+		end,
 	}
 }
 return plugins

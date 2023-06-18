@@ -32,6 +32,17 @@ M.dap = {
     }
 }
 
+M.crates = {
+    n = {
+        ["<leader>rcu" ] = {
+            function ()
+                require("crates").Upgrade_all_crates()
+            end,
+            "Update crates"
+        }
+    }
+}
+
 -- more keybinds!
 
 return M

@@ -56,11 +56,11 @@ local plugins = {
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp-signature-help"
 		},
-		opts = function()
-			local options = require("plugins.configs.cmp")
-			options.sources.insert({ name = 'nvim_lsp_signature_help' })
-			return options
-		end,
+		--opts = function()
+		--	local options = require("plugins.configs.cmp")
+		--	options.sources.insert({ name = 'nvim_lsp_signature_help' })
+		--	return options
+		--end,
 	},
 	{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 	{ "stevearc/dressing.nvim" },
@@ -165,6 +165,23 @@ local plugins = {
 		init = function()
 			vim.g.rustfmt_autosave = 1
 		end
+	},
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"mfussenegger/nvim-dap",
+		},
+		opts = function ()
+			return require "custom.configs.rust-tools"
+		end,
+		config = function (_, opts)
+			require("rust-tools").setup(opts)
+		end
+	},
+	{
+		"mfussenegger/nvim-dap",
 	}
 }
 return plugins

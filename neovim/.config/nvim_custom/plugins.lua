@@ -24,16 +24,52 @@ local plugins = {
 			"williamboman/mason.nvim"
 		},
 		opts = {
-			ensure_installed = { "lua_ls", "rust_analyzer", "omnisharp" },
+			ensure_installed = {
+				"lua_ls", "bashls", "dockerls", "astro", "rust_analyzer",
+				 "omnisharp", "html", "jsonls", "tsserver", "stylelint_lsp",
+				 "svelte", "tailwindcss", "yamlls"
+				 --"denols"
+			},
+			automatic_installation = true,
 		},
 	},
 	{ "Hoffs/omnisharp-extended-lsp.nvim", ft = "cs" },
 	-- code formatting, linting etc
 	{
 		"jose-elias-alvarez/null-ls.nvim",
+		dependencies = {
+			'hrsh7th/vim-vsnip',
+			'hrsh7th/vim-vsnip-integ'
+		},
 		config = function()
 			require("custom.configs.null-ls")
 		end,
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+		  "williamboman/mason.nvim",
+		  "jose-elias-alvarez/null-ls.nvim",
+		  "williamboman/mason-lspconfig.nvim",
+		},
+		config = function()
+			require("mason-null-ls").setup({
+				automatic_installation = false,
+				automatic_setup = true,
+				ensure_installed = nil,
+			})
+		end,
+	},
+	{
+		"MunifTanjim/eslint.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"jose-elias-alvarez/null-ls.nvim",
+		},
+		config = function ()
+			require("custom.config.eslint")
+		end
 	},
 	{
 		"j-hui/fidget.nvim",

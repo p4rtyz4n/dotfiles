@@ -15,7 +15,10 @@ M.treesitter = {
     "dockerfile",
     "rust",
     "yaml",
-    "sql"
+    "sql",
+    "python",
+    "tsx",
+    "markdown"
   },
 }
 
@@ -39,8 +42,6 @@ M.mason = {
     "yaml-language-server",
     "fantomas",
     --eslint-lsp
-    --eslint_d
-    -- shell
     "shfmt",
     "shellcheck",
   },

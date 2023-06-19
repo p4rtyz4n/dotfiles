@@ -2,9 +2,13 @@ local on_attach_from_lsp = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 local omnisharp_extended = require("omnisharp_extended")
 local lspconfig = require("lspconfig")
-local util = require "lspconfig/util"
 
-local servers = { "html", "cssls", "tsserver" }
+local servers = {
+	"html", "tsserver",
+	"lua_ls", "bashls", "dockerls", "astro",
+	"html", "jsonls", "stylelint_lsp",
+	"svelte", "tailwindcss", "yamlls"
+}
 
 local on_attach = function(client, bufnr)
 	on_attach_from_lsp(client, bufnr)
@@ -35,8 +39,6 @@ for _, lsp in ipairs(servers) do
 		root_dir = function() return vim.loop.cwd() end
 	})
 end
-
-local pid = vim.fn.getpid()
 
 
 lspconfig.omnisharp.setup({

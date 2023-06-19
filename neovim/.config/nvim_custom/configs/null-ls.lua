@@ -9,14 +9,17 @@ local b = null_ls.builtins
 local sources = {
   b.code_actions.gitsigns,
   -- webdev stuff
-  b.formatting.deno_fmt,                                                    -- choosed deno for ts/js files cuz its very fast!
+  --b.formatting.deno_fmt,       
+  --b.diagnostics.deno_lint,
   b.formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }), -- so prettier works only on these filetypes
 
   -- Lua
   b.formatting.stylua,
+  b.completion.luasnip,
 
   -- Shell
   b.formatting.shfmt,
+  b.code_actions.shellcheck,
   b.diagnostics.shellcheck.with({ diagnostics_format = "#{m} [#{c}]" }),
 
   --eslint
@@ -24,12 +27,15 @@ local sources = {
   --b.diagnostics.eslint,
   --b.formatting.eslint,
   --eslint_d
-  --b.formatting.eslint_d,
-  --b.code_actions.eslint_d,
-  --b.diagnostics.eslint_d,
+  b.formatting.eslint_d,
+  b.code_actions.eslint_d,
+  b.diagnostics.eslint_d,
 
+  --b.diagnostics.cspell,
+  b.diagnostics.codespell,
   b.completion.spell,
   b.completion.tags,
+  b.completion.vsnip,
   b.formatting.trim_newlines,
   b.formatting.trim_whitespace,
   b.code_actions.gitsigns,
@@ -44,40 +50,11 @@ local sources = {
   b.formatting.csharpier,
 
   -- "rust"
-  b.formatting.rustfmt,
+  --b.formatting.rustfmt,
 }
-
-local lsp_formatting = function(bufnr)
-  -- vim.lsp.buf.format({ bufnr = bufnr})
-  vim.lsp.buf.format({
-    filter = function(client)
-      -- apply whatever logic you want (in this example, we'll only use null-ls)
-      return client.name == "null-ls"
-    end,
-    bufnr = bufnr,
-  })
-end
-
--- if you want to set up formatting on save, you can use this as a callback
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
--- add to your shared on_attach callback
-local on_attach = function(client, bufnr)
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        lsp_formatting(bufnr)
-      end,
-    })
-  end
-end
 
 null_ls.setup({
   --debug = true,
   sources = sources,
-  on_attach = on_attach,
 })
 

@@ -89,17 +89,12 @@ local plugins = {
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp-signature-help"
-		},
 		opts = function ()
 			local M = require "plugins.configs.cmp"
-			table.insert(M.sources, {name = "nvim_lsp_signature_help"})
 			table.insert(M.sources, {name = "crates"})
 			return M
 		end,
 	},
-	{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 	{ "stevearc/dressing.nvim" },
 	{
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -149,18 +144,14 @@ local plugins = {
 		"nvim-neotest/neotest",
 		dependencies = {
 			"rouge8/neotest-rust",
+			"haydenmeade/neotest-jest",
 			"nvim-lua/plenary.nvim",
+			"Issafalcon/neotest-dotnet",
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
 		},
-		config = function()
-			require("neotest").setup({
-				adapters = {
-					require("neotest-rust")({
-						--  args = { "--no-capture" },
-					}),
-				},
-			})
+		config = function (_, opts)
+			require("custom.configs.neotest")
 		end,
 	},
 	{
@@ -219,6 +210,24 @@ local plugins = {
 	},
 	{
 		"mfussenegger/nvim-dap",
+		dependencies = {
+			{
+				"mxsdev/nvim-dap-vscode-js",
+				config = function ()
+					require("dap-vscode-js").setup({
+						adapters = { 'pwa-node' },
+					})
+				end
+			},
+			{
+				"microsoft/vscode-js-debug",
+				lazy = true,
+				build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+			}
+		},
+		config = function (_, opts)
+			require("custom.configs.dap")
+		end
 	},
 	{
 		"saecki/crates.nvim",

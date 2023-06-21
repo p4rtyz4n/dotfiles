@@ -5,7 +5,7 @@ local lspconfig = require("lspconfig")
 
 local servers = {
 	"html", "tsserver",
-	"lua_ls", "bashls", "dockerls", "astro",
+	"bashls", "dockerls", "astro",
 	"html", "jsonls", "stylelint_lsp",
 	"svelte", "tailwindcss", "yamlls"
 }
@@ -84,4 +84,19 @@ lspconfig.omnisharp.setup({
 	-- Only run analyzers against open files when "enableRoslynAnalyzers" is
 	-- true
 	analyze_open_documents_only = false,
+})
+
+lspconfig.lua_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	handlers = rounded_border_handlers,
+	--filetypes
+	root_dir = function() return vim.loop.cwd() end,
+	settings = {
+	  Lua = {
+		completion = {
+		  callSnippet = "Replace"
+		}
+	  }
+	}
 })

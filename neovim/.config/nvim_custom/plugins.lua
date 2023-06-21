@@ -5,6 +5,7 @@ local plugins = {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
+			"folke/neodev.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"Hoffs/omnisharp-extended-lsp.nvim"
 		},
@@ -37,10 +38,10 @@ local plugins = {
 	-- code formatting, linting etc
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		dependencies = {
-			'hrsh7th/vim-vsnip',
-			'hrsh7th/vim-vsnip-integ'
-		},
+		--dependencies = {
+		--	'hrsh7th/vim-vsnip',
+		--	'hrsh7th/vim-vsnip-integ'
+		--},
 		config = function()
 			require("custom.configs.null-ls")
 		end,
@@ -95,7 +96,12 @@ local plugins = {
 			return M
 		end,
 	},
-	{ "stevearc/dressing.nvim" },
+	--[[{
+		"stevearc/dressing.nvim",
+		config =function ()
+			require('dressing').setup({})
+		end
+	},]]--
 	{
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		config = function()
@@ -230,12 +236,40 @@ local plugins = {
 		end
 	},
 	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = {"mfussenegger/nvim-dap"},
+		config = function ()
+			local dap = require("dap")
+			local dapui = require("dapui")
+			dapui.setup()
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
+		end
+	},
+	{
 		"saecki/crates.nvim",
 		ft = {"rust", "toml"},
 		config = function (_, opts)
 			local crates = require("crates")
 			crates.setup(opts)
 			crates.show()
+		end,
+	},
+	{
+		"folke/neodev.nvim",
+		opts = {},
+		config = function (_, opts)
+			require("neodev").setup({
+  				library = { plugins = { "nvim-dap-ui", "neotest" }, types = true },
+				-- add any options here, or leave empty to use the default settings
+			  })
 		end,
 	}
 }

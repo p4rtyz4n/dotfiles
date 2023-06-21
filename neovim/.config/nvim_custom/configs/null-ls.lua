@@ -15,7 +15,7 @@ local sources = {
 
   -- Lua
   b.formatting.stylua,
-  b.completion.luasnip,
+  --b.completion.luasnip,
 
   -- Shell
   b.formatting.shfmt,
@@ -35,7 +35,7 @@ local sources = {
   b.diagnostics.codespell,
   b.completion.spell,
   b.completion.tags,
-  b.completion.vsnip,
+  --b.completion.vsnip,
   b.formatting.trim_newlines,
   b.formatting.trim_whitespace,
   b.code_actions.gitsigns,

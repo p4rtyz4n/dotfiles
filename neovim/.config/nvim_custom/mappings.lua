@@ -37,12 +37,49 @@ M.dap = {
         },
         ["<leader>dus"] = {
             function ()
-                local widgets = require("dap.ui.widgets");
-                local sidebar = widgets.sidebar(widgets.scopes);
+                local widgets = require("dap.ui.widgets")
+                local sidebar = widgets.sidebar(widgets.scopes)
                 sidebar.open();
             end,
             "Open debugging sidebar"
+        },
+        ["<leader>dui"] = {
+            function ()
+                local dapui = require("dapui")
+                dapui.toggle()
+            end,
+            "Open debugging UI"
+        },
+
+        ['<F5>'] = {
+            function ()
+                local dapui = require("dapui")
+                dapui.continue()
+            end,
+            "Continue debugging"
+        },
+        ["<F10>"] = {
+            function ()
+                local dapui = require("dapui")
+                dapui.step_over()
+            end,
+            "Step over debugging"
+        },
+        ["<F11>"] = {
+            function ()
+                local dapui = require("dapui")
+                dapui.step_into()
+            end,
+            "Step into debugging"
+        },
+        ["<F12>"] = {
+            function ()
+                local dapui = require("dapui")
+                dapui.step_out()
+            end,
+            "Step out debugging"
         }
+        --vim.keymap.set('n', "<leader>b"], require 'dap'.toggle_breakpoint)
     }
 }
 

@@ -35,6 +35,17 @@ local plugins = {
 		},
 	},
 	{ "Hoffs/omnisharp-extended-lsp.nvim", ft = "cs" },
+	{
+		'nvimdev/lspsaga.nvim',
+		cmd = { "Lspsaga" },
+		config = function()
+			require('lspsaga').setup({})
+		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter", -- optional
+			"nvim-tree/nvim-web-devicons"     -- optional
+		}
+	},
 	-- code formatting, linting etc
 	{
 		"MunifTanjim/eslint.nvim",

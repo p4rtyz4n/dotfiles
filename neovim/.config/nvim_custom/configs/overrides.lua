@@ -38,7 +38,6 @@ M.mason = {
     "json-lsp",
     "omnisharp",
     "rust-analyzer",
-    "rustfmt",
     "yaml-language-server",
     "fantomas",
     --eslint-lsp

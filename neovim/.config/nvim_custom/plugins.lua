@@ -37,7 +37,8 @@ local plugins = {
 	{ "Hoffs/omnisharp-extended-lsp.nvim", ft = "cs" },
 	{
 		'nvimdev/lspsaga.nvim',
-		cmd = { "Lspsaga" },
+		--cmd = { "Lspsaga" },
+		event = "LspAttach",
 		config = function()
 			require('lspsaga').setup({})
 		end,
@@ -46,18 +47,29 @@ local plugins = {
 			"nvim-tree/nvim-web-devicons"     -- optional
 		}
 	},
-	-- code formatting, linting etc
 	{
-		"MunifTanjim/eslint.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
-		config = function ()
-			require("custom.config.eslint")
-		end
+		"mfussenegger/nvim-lint",
+		--todo add linters
+		config = function()
+			require('lint').linters_by_ft = {
+				typescript = { 'eslint_d'},
+				javascript = { 'eslint_d'},
+				typescriptreact = { 'eslint_d'},
+				javascriptreact = { 'eslint_d'},
+				markdown = {'vale',}
+			}
+
+			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+				callback = function()
+				  require("lint").try_lint()
+				end,
+			})
+		end,
 	},
 	{
 		"j-hui/fidget.nvim",
+		tag = "legacy",
+		event = "LspAttach",
 		dependencies = {
 			"neovim/nvim-lspconfig",
 		},

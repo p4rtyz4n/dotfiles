@@ -7,7 +7,7 @@ local servers = {
 	"html", "tsserver",
 	"bashls", "dockerls", "astro",
 	"html", "jsonls", "stylelint_lsp",
-	"svelte", "tailwindcss", "yamlls"
+	"svelte", "tailwindcss", "yamlls", "eslint"
 }
 
 local on_attach = function(client, bufnr)

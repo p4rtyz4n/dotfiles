@@ -40,7 +40,8 @@ M.mason = {
     "rust-analyzer",
     "yaml-language-server",
     "fantomas",
-    --eslint-lsp
+    "eslint-lsp",
+    "eslint_d",
     "shfmt",
     "shellcheck",
   },

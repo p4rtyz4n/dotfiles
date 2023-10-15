@@ -43,7 +43,7 @@ M.mason = {
     "eslint-lsp",
     "eslint_d",
     "shfmt",
-    "shellcheck",
+    "cspell"
   },
 }
 

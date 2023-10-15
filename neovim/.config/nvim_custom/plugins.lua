@@ -52,10 +52,10 @@ local plugins = {
 		--todo add linters
 		config = function()
 			require('lint').linters_by_ft = {
-				typescript = { 'eslint_d'},
-				javascript = { 'eslint_d'},
-				typescriptreact = { 'eslint_d'},
-				javascriptreact = { 'eslint_d'},
+				typescript = { 'eslint_d', 'cspell' },
+				javascript = { 'eslint_d', 'cspell' },
+				typescriptreact = { 'eslint_d', 'cspell' },
+				javascriptreact = { 'eslint_d', 'cspell' },
 				markdown = {'vale',}
 			}
 

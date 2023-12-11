@@ -4,8 +4,10 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "buo/cask-upgrade"
+tap "rsteube/homebrew-tap"
 
 
+cask "rsteube/tap/carapace"
 cask "adguard"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"

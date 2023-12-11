@@ -538,3 +538,4 @@ source ~/.cache/starship/init.nu
 
 source ~/.config/broot/launcher/nushell/br
 source ~/.config/op/plugins.nu
+source ~/.cache/carapace/init.nu

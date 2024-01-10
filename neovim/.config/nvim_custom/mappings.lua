@@ -26,7 +26,7 @@ M.general = {
 M.telescope = {
     n = {
         ["gd"] = { "<cmd>lua require('omnisharp_extended').telescope_lsp_definitions()<cr>", "Go to definition" },
-    },
+    }
 }
 
 M.dap = {
@@ -94,6 +94,68 @@ M.crates = {
     }
 }
 
--- more keybinds!
+M.ufo = {
+    n = {
+        ['zR'] = {
+            function ()
+                require('ufo').openAllFolds()
+            end,
+            "Open all folds"
+        },
+        ['zM'] = {
+            function ()
+                require('ufo').closeAllFolds()
+            end,
+            "Close all folds"
+        },
+    }
+}
+
+M.trouble = {
+    n = {
+      [ "<leader>xx" ] = {
+        function ()
+            require("trouble").toggle()
+        end,
+        "Toggle trouble"
+      },
+      [ "<leader>xw" ] = {
+        function ()
+            require("trouble").toggle("workspace_diagnostics")
+        end,
+        "Toggle workspace diagnostics"
+      },
+      [ "<leader>xd" ] = {
+        function ()
+            require("trouble").toggle("document_diagnostics")
+        end,
+        "Toggle document diagnostics"
+      },
+      [ "<leader>xq" ] = {
+        function ()
+            require("trouble").toggle("quickfix")
+        end,
+        "Toggle quickfix"
+      },
+      [ "<leader>xl" ] = {
+        function ()
+            require("trouble").toggle("loclist")
+        end,
+        "Toggle loclist"
+      },
+      [ "gR" ] = {
+        function ()
+            require("trouble").toggle("lsp_references")
+        end,
+        "Toggle lsp references"
+      },
+    }
+}
+
+M.aerial = {
+    n = {
+        ["<leader>a"] = { "<cmd>AerialToggle!<CR>", "Toggle Aerial" }
+    }
+}
 
 return M

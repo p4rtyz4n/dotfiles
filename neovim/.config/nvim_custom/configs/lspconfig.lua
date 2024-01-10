@@ -10,7 +10,16 @@ local servers = {
 	"svelte", "tailwindcss", "yamlls", "eslint"
 }
 
+-- for ufo plugin
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+
 local on_attach = function(client, bufnr)
+	if client.server_capabilities.inlayHintProvider then
+        vim.lsp.buf.inlay_hint(bufnr, true)
+    end
 	on_attach_from_lsp(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 

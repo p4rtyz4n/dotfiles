@@ -86,21 +86,10 @@ setup_homebrew() {
   fi
 }
 
-setup_tmux() {
-  if [ ! -d ~/.tmux/plugins/tpm ]; then
-    log "installing Tmux plugins"
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    ~/.tmux/plugins/tpm/bin/install_plugins
-  else
-    log "updating Tmux plugins"
-    ~/.tmux/plugins/tpm/bin/update_plugins all
-  fi
-}
-
 setup_neovim() {
   log "updating NeoVim plugins via Packer"
-  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 
-  ln -s ~/.config/nvim_custom ~/.config/nvim/lua/custom
+  git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim --depth 1 
+  ln -s ~/.config/nvim_custom ~/.config/nvim/lua/user
   #nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
 }
 
@@ -134,9 +123,6 @@ main() {
   esac
   if ask "setup NeoVim?"; then
     setup_neovim
-  fi
-  if ask "setup Tmux?"; then
-    setup_tmux
   fi
 }
 

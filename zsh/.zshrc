@@ -128,7 +128,6 @@ zplug 'plugins/git', from:oh-my-zsh, if:'which git'
 #zplug 'plugins/gpg-agent', from:oh-my-zsh, if:'which gpg-agent'
 zplug 'plugins/httpie', from:oh-my-zsh, if:'which httpie'
 zplug 'plugins/nmap', from:oh-my-zsh, if:'which nmap'
-zplug 'plugins/tmux', from:oh-my-zsh, if:'which tmux'
 
 #zplug 'b4b4r07/enhancd', use:init.sh
 zplug 'b4b4r07/zsh-vimode-visual', defer:3
@@ -179,7 +178,7 @@ globalias() {
   # FIXME: the whitelist pattern should technically only be computed once, but
   # since it's cheap, we keep it local for now.
   local -a whitelist candidates
-  whitelist=(ls git tmux)
+  whitelist=(ls git)
   local pattern="^(${(j:|:)whitelist})"
   for k v in ${(kv)aliases}; do
     # We have a candidate unless the alias is an alias that begins with itself,
@@ -435,7 +434,6 @@ update() {
   npm update -g
   # Shell plugin management
   zplug update
-  .tmux/plugins/tpm/bin/update_plugins all
   vim +PlugUpgrade +PlugUpdate +PlugCLean! +qa
 }
 

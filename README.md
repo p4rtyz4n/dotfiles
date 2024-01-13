@@ -3,7 +3,6 @@
 > Proper dotfiles are the very heart of an efficient working environment.
 
 - **Terminals**: [Kitty](https://sw.kovidgoyal.net/kitty/) and
-             [tmux](https://github.com/tmux/tmux)
 - **Shell**: [Zsh](https://www.zsh.org)
 - **Editor**: [NeoVim](https://neovim.io/)
 - **Colorscheme**: [Gruvbox](https://github.com/morhetz/gruvbox)

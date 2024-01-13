@@ -1,5 +1,10 @@
-local M = {}
-
+return {
+    n = {
+    },
+    v = {
+    }
+}
+--[[
 M.general = {
     n = {
         ["<Leader>l"] = {
@@ -157,5 +162,4 @@ M.aerial = {
         ["<leader>a"] = { "<cmd>AerialToggle!<CR>", "Toggle Aerial" }
     }
 }
-
-return M
+]]--

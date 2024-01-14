@@ -1,5 +1,6 @@
 return {
   "AstroNvim/astrocommunity",
+  --branch = "v4",
   { import = "astrocommunity.colorscheme.kanagawa-nvim", enabled = false },
   { import = "astrocommunity.colorscheme.catppuccin", enabled = false },
   { import = "astrocommunity.colorscheme.gruvbox-baby" },

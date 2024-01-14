@@ -88,7 +88,7 @@ setup_homebrew() {
 
 setup_neovim() {
   log "updating NeoVim plugins via Packer"
-  git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim --depth 1 
+  git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim --depth 1
   ln -s ~/.config/nvim_custom ~/.config/nvim/lua/user
   #nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
 }

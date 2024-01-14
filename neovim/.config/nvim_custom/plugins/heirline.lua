@@ -118,4 +118,3 @@ return {
     return opts
   end,
 }
-

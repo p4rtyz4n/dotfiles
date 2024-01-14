@@ -1,3 +1,3 @@
 return {
-    "aznhe21/actions-preview.nvim"
+  "aznhe21/actions-preview.nvim",
 }

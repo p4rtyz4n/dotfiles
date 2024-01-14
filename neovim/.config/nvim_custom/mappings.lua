@@ -1,12 +1,12 @@
 return {
-    n = {
-        ["gy"] = { '"+y', desc = "Copy to system clipboard" },
-        ["gp"] = { '"+p', desc = "Paste from system clipboard" },
-    },
-    v = {
-        ["gy"] = { '"+y', desc = "Copy to system clipboard" },
-        ["gp"] = { '"+p', desc = "Paste from system clipboard" },
-    }
+  n = {
+    ["gy"] = { '"+y', desc = "Copy to system clipboard" },
+    ["gp"] = { '"+p', desc = "Paste from system clipboard" },
+  },
+  v = {
+    ["gy"] = { '"+y', desc = "Copy to system clipboard" },
+    ["gp"] = { '"+p', desc = "Paste from system clipboard" },
+  },
 }
 --[[
 M.general = {
@@ -79,4 +79,5 @@ M.trouble = {
       },
     }
 }
-]]--
+]]
+--

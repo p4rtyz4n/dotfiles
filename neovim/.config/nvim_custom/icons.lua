@@ -1,8 +1,8 @@
 return {
-    VimIcon = "",
-    ScrollText = "",
-    GitBranch = "",
-    GitAdd = "",
-    GitChange = "",
-    GitDelete = "",
+  VimIcon = "",
+  ScrollText = "",
+  GitBranch = "",
+  GitAdd = "",
+  GitChange = "",
+  GitDelete = "",
 }

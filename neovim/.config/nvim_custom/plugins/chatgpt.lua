@@ -1,3 +1,3 @@
 return {
-    "jackMort/ChatGPT.nvim"
+  "jackMort/ChatGPT.nvim",
 }

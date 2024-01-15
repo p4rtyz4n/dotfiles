@@ -86,14 +86,6 @@ setup_homebrew() {
   fi
 }
 
-setup_neovim() {
-  log "updating NeoVim plugins via Packer"
-  git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim --depth 1
-  ln -s ~/.config/nvim_custom ~/.config/nvim/lua/user
-  #nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
-}
-
-
 main() {
   export PATH="/opt/homebrew/bin:$PATH"
   printf "$blue"
@@ -121,9 +113,6 @@ main() {
       fi
       ;;
   esac
-  if ask "setup NeoVim?"; then
-    setup_neovim
-  fi
 }
 
 main "$@"

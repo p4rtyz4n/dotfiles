@@ -1,4 +1,6 @@
-if true then return {} end -- REMOVE THIS LINE TO ACTIVATE THIS FILE
+if true then
+  return {}
+end -- REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- AstroCore provides a central place to modify mappings set up as well as which-key menu titles
 return {
@@ -23,9 +25,9 @@ return {
         -- mappings seen under group name "Buffer"
         ["<leader>bD"] = {
           function()
-            require("astroui.status.heirline").buffer_picker(
-              function(bufnr) require("astrocore.buffer").close(bufnr) end
-            )
+            require("astroui.status.heirline").buffer_picker(function(bufnr)
+              require("astrocore.buffer").close(bufnr)
+            end)
           end,
           desc = "Pick to close",
         },
@@ -34,10 +36,16 @@ return {
         ["<leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+        ["gy"] = { '"+y', desc = "Copy to system clipboard" },
+        ["gp"] = { '"+p', desc = "Paste from system clipboard" },
       },
       t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
+      },
+      v = {
+        ["gy"] = { '"+y', desc = "Copy to system clipboard" },
+        ["gp"] = { '"+p', desc = "Paste from system clipboard" },
       },
     },
   },

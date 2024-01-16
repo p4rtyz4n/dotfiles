@@ -8,10 +8,12 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup {
   spec = {
+    -- docs https://deploy-preview-120--peaceful-platypus-6db452.netlify.app
     -- TODO: change `branch="v4"` to `version="^4"` on release
     { "AstroNvim/AstroNvim", branch = "v4", import = "astronvim.plugins" },
     -- AstroCommunity: import any community modules here
     -- TODO: Remove branch v4 on release
+    -- https://github.com/AstroNvim/astrocommunity/tree/v4/lua/astrocommunity
     { "AstroNvim/astrocommunity", branch = "v4" },
 
     { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
@@ -21,7 +23,6 @@ require("lazy").setup {
     { import = "astrocommunity.editing-support.auto-save-nvim" },
     { import = "astrocommunity.editing-support.chatgpt-nvim" },
     --{ import = "astrocommunity.diagnostics.lsp_lines-nvim" },
-    { import = "astrocommunity.diagnostics.trouble-nvim" },
     { import = "astrocommunity.git.diffview-nvim" },
     { import = "astrocommunity.syntax.hlargs-nvim" },
 
@@ -37,7 +38,6 @@ require("lazy").setup {
     { import = "astrocommunity.pack.json" },
     { import = "astrocommunity.pack.html-css" },
     { import = "astrocommunity.pack.docker" },
-    { import = "astrocommunity.pack.markdown" },
     { import = "astrocommunity.pack.cs" },
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.swift" },

@@ -100,13 +100,13 @@ $env.NU_PLUGIN_DIRS = [
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
-
-
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin' | prepend '/opt/homebrew/sbin' | prepend '~/.cargo/bin')
 load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 # todo set into private file
 $env.OPENAI_API_KEY = (security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY')
+$env.HOMEBREW_GITHUB_API_TOKEN=$(security find-generic-password -w -s 'GITHUB' -a 'HOMEBREW_GITHUB_API_TOKEN')
+load-env (/opt/homebrew/bin/brew shellenv | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 
 $env.EDITOR = nvim
 $env.VISUAL = code

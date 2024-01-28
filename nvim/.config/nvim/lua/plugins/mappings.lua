@@ -1,7 +1,3 @@
-if true then
-  return {}
-end -- REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- AstroCore provides a central place to modify mappings set up as well as which-key menu titles
 return {
   "AstroNvim/astrocore",
@@ -10,6 +6,19 @@ return {
     mappings = {
       -- first key is the mode
       n = {
+        --[[
+        ["<leader>lz"] = {
+          function()
+            local Terminal = require("toggleterm.terminal").Terminal
+            local lazygit = Terminal:new({ cmd = "lazygit ", hidden = true })
+
+            lazygit:toggle()
+          end,
+        },
+        
+        ]]
+        --
+
         -- second key is the lefthand side of the map
 
         -- navigate buffer tabs with `H` and `L`

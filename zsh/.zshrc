@@ -309,6 +309,8 @@ alias gla="git log --all --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s
 alias glg="git log --graph"
 alias glp="git log --patch"
 alias gm="git merge"
+alias gma="git merge --abort"
+alias gmc="git merge --continue"
 alias gp="git push"
 alias gpu="git push --set-upstream origin (git symbolic-ref HEAD | sed \"s/refs\/heads\///\")"
 alias gpf="git push --force"
@@ -344,6 +346,9 @@ alias gshd="git stash drop"
 alias gshp="git stash pop"
 alias gsu="git submodule update"
 alias gts="git tag -s"
+alias gw="git worktree"
+alias gwa="git worktree add"
+alias gwr="git worktree remove"
 
 # =============================================================================
 #                                Key Bindings
@@ -471,3 +476,7 @@ export OPENAI_API_KEY=""
 eval "$(fnm env --use-on-cd)"
 source ~/.config/broot/launcher/bash/br
 source ~/.config/op/plugins.sh
+
+export rpath="/opt/homebrew/lib/"
+
+source /Users/bohdanpavlov/.config/broot/launcher/bash/br

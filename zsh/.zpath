@@ -13,6 +13,8 @@ path=(
   /usr/local/sbin
   /usr/sbin
   /sbin
+  /opt/homebrew/bin
+  /opt/homebrew/sbin
   /usr/local/share/dotnet
   ~/.dotnet/tools
   /usr/X11R6/bin

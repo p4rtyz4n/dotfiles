@@ -2,6 +2,8 @@
 -- Default options that are always set: https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/options.lua
 -- Add any additional options here
 
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 vim.opt.relativenumber = true -- sets vim.opt.relativenumber
 vim.opt.number = true -- sets vim.opt.number
 -- vim.opt.spell = false -- sets vim.opt.spell

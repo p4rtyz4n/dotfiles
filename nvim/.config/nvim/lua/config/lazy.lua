@@ -1,4 +1,4 @@
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.g.astronvim_first_install = true -- lets AstroNvim know that this is an initial installation
   -- stylua: ignore
@@ -6,7 +6,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-require("lazy").setup {
+require("lazy").setup({
   spec = {
     -- docs https://deploy-preview-120--peaceful-platypus-6db452.netlify.app
     -- TODO: change `branch="v4"` to `version="^4"` on release
@@ -51,7 +51,7 @@ require("lazy").setup {
     -- import/override with your plugins
     { import = "plugins" },
   },
-  install = { colorscheme = { "astrodark", "habamax", "gruvbox-baby" } },
+  install = { colorscheme = { "gruvbox-baby" } },
   performance = {
     rtp = {
       -- disable some rtp plugins, add more to your liking
@@ -64,4 +64,4 @@ require("lazy").setup {
       },
     },
   },
-}
+})

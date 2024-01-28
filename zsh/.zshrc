@@ -451,7 +451,7 @@ if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
 
-#export HOMEBREW_GITHUB_API_TOKEN=whatever
+export HOMEBREW_GITHUB_API_TOKEN=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
 eval "$(/opt/homebrew/bin/brew shellenv)"  
 
 # Setup GPG for user accounts.
@@ -472,7 +472,7 @@ export DENO_INSTALL="$HOME/.deno"
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
 #todo:set into separate file
-export OPENAI_API_KEY=""
+export OPENAI_API_KEY=$(security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY')
 eval "$(fnm env --use-on-cd)"
 source ~/.config/broot/launcher/bash/br
 source ~/.config/op/plugins.sh

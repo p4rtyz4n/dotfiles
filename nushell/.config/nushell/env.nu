@@ -106,7 +106,7 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin' | p
 load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 # todo set into private file
-$env.OPENAI_API_KEY = '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'
+$env.OPENAI_API_KEY = (security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY')
 
 $env.EDITOR = nvim
 $env.VISUAL = code

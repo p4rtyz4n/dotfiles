@@ -52,4 +52,4 @@ if [[ -f ~/.zshenv.local ]]; then
   source ~/.zshenv.local
 fi
 
-# vim: ft=zsh
+source "$HOME/.cargo/env"

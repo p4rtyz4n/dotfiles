@@ -473,10 +473,21 @@ export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
 #todo:set into separate file
 export OPENAI_API_KEY=$(security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY')
+export OPENAI_API_HOST="api.openai.com"
 eval "$(fnm env --use-on-cd)"
+eval "$(zoxide init zsh)"
 source ~/.config/broot/launcher/bash/br
-source ~/.config/op/plugins.sh
 
 export rpath="/opt/homebrew/lib/"
 
-source /Users/bohdanpavlov/.config/broot/launcher/bash/br
+
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/b.pavlov/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+
+# bun completions
+[ -s "/Users/b.pavlov/.bun/_bun" ] && source "/Users/b.pavlov/.bun/_bun"

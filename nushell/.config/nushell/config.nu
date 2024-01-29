@@ -534,5 +534,5 @@ source ~/.cache/starship/init.nu
 #alias br = (br_cmd | cd ($env.cmd | str replace "cd" "" | str trim))
 
 source ~/.config/broot/launcher/nushell/br
-source ~/.config/op/plugins.nu
 source ~/.cache/carapace/init.nu
+source ~/.zoxide.nu

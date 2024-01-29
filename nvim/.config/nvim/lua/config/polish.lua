@@ -14,3 +14,14 @@
 --     ["~/%.config/foo/.*"] = "fooscript",
 --   },
 -- }
+
+local cmd = vim.api.nvim_create_autocmd
+
+--au BufNewFile,BufRead Jenkinsfile setf groovy
+cmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.jenkinsfile",
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+    vim.api.nvim_buf_set_option(buf, "filetype", "groovy")
+  end,
+})

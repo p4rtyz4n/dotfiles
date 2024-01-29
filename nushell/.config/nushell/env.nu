@@ -100,12 +100,30 @@ $env.NU_PLUGIN_DIRS = [
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
+
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin' | prepend '/opt/homebrew/sbin' | prepend '~/.cargo/bin')
+$env.RANCHER_DESKTOP_PATH = '~/.rd/bin'
+$env.USR_BIN = '/usr/local/bin/'
+$env.DOT_NET = '/usr/local/share/dotnet/'
+$env.MONO_PATH = '/Library/Frameworks/Mono.framework/Versions/Current/bin/'
+$env.JDK = '/opt/homebrew/opt/openjdk/bin'
+$env.CPPFLAGS = '-I/opt/homebrew/opt/openjdk/include'
+
+
 load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
+
 $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
+
+$env.PATH = ($env.PATH | prepend $env.RANCHER_DESKTOP_PATH)
+$env.PATH = ($env.PATH | prepend $env.USR_BIN)
+$env.PATH = ($env.PATH | prepend $env.DOT_NET)
+$env.PATH = ($env.PATH | prepend $env.MONO_PATH)
+$env.PATH = ($env.PATH | prepend $env.JDK)
+
 # todo set into private file
-$env.OPENAI_API_KEY = (security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY')
-$env.HOMEBREW_GITHUB_API_TOKEN=$(security find-generic-password -w -s 'GITHUB' -a 'HOMEBREW_GITHUB_API_TOKEN')
+$env.OPENAI_API_KEY = (security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY' or "")
+$env.HOMEBREW_GITHUB_API_TOKEN = (security find-generic-password -w -s 'GITHUB' -a 'HOMEBREW_GITHUB_API_TOKEN' or "" )
+
 load-env (/opt/homebrew/bin/brew shellenv | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 
 $env.EDITOR = nvim

@@ -121,8 +121,8 @@ $env.PATH = ($env.PATH | prepend $env.MONO_PATH)
 $env.PATH = ($env.PATH | prepend $env.JDK)
 
 # todo set into private file
-$env.OPENAI_API_KEY = (security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY' or "")
-$env.HOMEBREW_GITHUB_API_TOKEN = (security find-generic-password -w -s 'GITHUB' -a 'HOMEBREW_GITHUB_API_TOKEN' or "" )
+$env.OPENAI_API_KEY = (do { security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY'} | complete).stdout
+$env.HOMEBREW_GITHUB_API_TOKEN = (do { security find-generic-password -w -s 'GITHUB' -a 'HOMEBREW_GITHUB_API_TOKEN' } | complete).stdout
 
 load-env (/opt/homebrew/bin/brew shellenv | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 

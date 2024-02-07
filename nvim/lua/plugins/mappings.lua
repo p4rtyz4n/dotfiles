@@ -1,4 +1,5 @@
 -- AstroCore provides a central place to modify mappings set up as well as which-key menu titles
+---@type LazySpec
 return {
   "AstroNvim/astrocore",
   ---@type AstroCoreOpts
@@ -32,17 +33,17 @@ return {
         -- },
 
         -- mappings seen under group name "Buffer"
-        ["<leader>bD"] = {
+        ["<Leader>bD"] = {
           function()
-            require("astroui.status.heirline").buffer_picker(function(bufnr)
-              require("astrocore.buffer").close(bufnr)
-            end)
+            require("astroui.status.heirline").buffer_picker(
+              function(bufnr) require("astrocore.buffer").close(bufnr) end
+            )
           end,
           desc = "Pick to close",
         },
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
-        --["<leader>b"] = { desc = "Buffers" },
+        ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
         ["gy"] = { '"+y', desc = "Copy to system clipboard" },

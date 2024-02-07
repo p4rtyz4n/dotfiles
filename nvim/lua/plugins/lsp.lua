@@ -1,12 +1,20 @@
-if true then
-  return {}
-end -- REMOVE THIS LINE TO ACTIVATE THIS FILE
+if true then return {} end -- REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
+---@type LazySpec
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    -- Configuration table of features provided by AstroLSP
+    features = {
+      autoformat = true, -- enable or disable auto formatting on start
+      codelens = true, -- enable/disable codelens refresh on start
+      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = off)
+      inlay_hints = false, -- enable/disable inlay hints on start
+      lsp_handlers = true, -- enable/disable setting of lsp_handlers
+      semantic_tokens = true, -- enable/disable semantic token highlighting
+    },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
       virtual_text = true,
@@ -61,7 +69,7 @@ return {
           desc = "Hover diagnostics",
         },
         n = {
-          ["<leader>la"] = {
+          ["<Leader>la"] = {
             function()
               require("actions-preview").code_actions()
             end,
@@ -69,7 +77,7 @@ return {
           },
         },
         v = {
-          ["<leader>la"] = {
+          ["<Leader>la"] = {
             function()
               require("actions-preview").code_actions()
             end,
@@ -83,7 +91,7 @@ return {
         --   desc = "Declaration of current symbol",
         --   cond = "textDocument/declaration",
         -- },
-        -- ["<leader>uY"] = {
+        -- ["<Leader>uY"] = {
         --   function() require("astrolsp.toggles").buffer_semantic_tokens() end,
         --   desc = "Toggle LSP semantic highlight (buffer)",
         --   cond = function(client) return client.server_capabilities.semanticTokensProvider and vim.lsp.semantic_tokens end,

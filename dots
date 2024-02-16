@@ -8,6 +8,9 @@ mkdir "$HOME/Library/Application Support/nushell"
 ln -s "$dir/nushell/config.nu" "$HOME/Library/Application Support/nushell/config.nu"
 ln -s "$dir/nushell/env.nu" "$HOME/Library/Application Support/nushell/env.nu"
 
+mkdir "$HOME/Library/Application Support/Luacheck"
+ln -s "$dir/nvim/.luacheckrc" "$HOME/Library/Application Support/Luacheck/.luacheckrc"
+
 
 mkdir "$HOME/.config"
 ln -s "$dir/kitty" "$HOME/.config/kitty"

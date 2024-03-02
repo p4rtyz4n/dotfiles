@@ -119,6 +119,7 @@ $env.PATH = ($env.PATH | prepend $env.USR_BIN)
 $env.PATH = ($env.PATH | prepend $env.DOT_NET)
 $env.PATH = ($env.PATH | prepend $env.MONO_PATH)
 $env.PATH = ($env.PATH | prepend $env.JDK)
+$env.PATH = ($env.PATH | split row (char esep) | prepend $"(pyenv root)/shims")
 
 # todo set into private file
 $env.OPENAI_API_KEY = (do { security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY'} | complete).stdout

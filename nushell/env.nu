@@ -109,6 +109,8 @@ $env.MONO_PATH = '/Library/Frameworks/Mono.framework/Versions/Current/bin/'
 $env.JDK = '/opt/homebrew/opt/openjdk/bin'
 $env.CPPFLAGS = '-I/opt/homebrew/opt/openjdk/include'
 
+$env.LT_LOAD_ONLY = 'en,uk,ja'
+
 
 load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 

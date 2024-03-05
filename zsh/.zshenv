@@ -60,4 +60,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 #libretranlate
-EXPORT LT_LOAD_ONLY="en,uk,ja"
+export LT_LOAD_ONLY="en,uk,ja"

@@ -103,20 +103,22 @@ $env.NU_PLUGIN_DIRS = [
 
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin' | prepend '/opt/homebrew/sbin' | prepend '~/.cargo/bin')
 $env.RANCHER_DESKTOP_PATH = '~/.rd/bin'
+$env.CARGO_PATH = '~/.cargo/bin'
 $env.USR_BIN = '/usr/local/bin/'
 $env.DOT_NET = '/usr/local/share/dotnet/'
 $env.MONO_PATH = '/Library/Frameworks/Mono.framework/Versions/Current/bin/'
 $env.JDK = '/opt/homebrew/opt/openjdk/bin'
 $env.CPPFLAGS = '-I/opt/homebrew/opt/openjdk/include'
+$env.NODE_EXTRA_CA_CERTS = '/System/Volumes/Data/opt/homebrew/etc/ca-certificates/cert.pem'
 
 $env.LT_LOAD_ONLY = 'en,uk,ja'
-
 
 load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 
 $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 
 $env.PATH = ($env.PATH | prepend $env.RANCHER_DESKTOP_PATH)
+$env.PATH = ($env.PATH | prepend $env.CARGO_PATH)
 $env.PATH = ($env.PATH | prepend $env.USR_BIN)
 $env.PATH = ($env.PATH | prepend $env.DOT_NET)
 $env.PATH = ($env.PATH | prepend $env.MONO_PATH)

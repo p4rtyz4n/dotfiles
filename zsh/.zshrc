@@ -451,6 +451,8 @@ if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
 
+export NODE_EXTRA_CA_CERTS=/System/Volumes/Data/opt/homebrew/etc/ca-certificates/cert.pem
+
 export HOMEBREW_GITHUB_API_TOKEN=$(security find-generic-password -w -s 'GITHUB' -a 'HOMEBREW_GITHUB_API_TOKEN')
 eval "$(/opt/homebrew/bin/brew shellenv)"  
 
@@ -485,9 +487,9 @@ zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/b.pavlov/.rd/bin:$PATH"
+export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 
 # bun completions
-[ -s "/Users/b.pavlov/.bun/_bun" ] && source "/Users/b.pavlov/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"

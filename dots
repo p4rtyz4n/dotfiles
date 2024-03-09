@@ -18,6 +18,7 @@ ln -s "$dir/nvim" "$HOME/.config/nvim"
 ln -s "$dir/zellij" "$HOME/.config/zellij"
 ln -s "$dir/bat" "$HOME/.config/bat"
 ln -s "$dir/btop" "$HOME/.config/btop"
+ln -s "$dir/mpv" "$HOME/.config/mpv"
 
 
 mkdir "$HOME/.gnupg"

@@ -4,7 +4,10 @@ tap "homebrew/bundle"
 tap "homebrew/services"
 tap "buo/cask-upgrade"
 tap "rsteube/homebrew-tap"
+tap "nikitabobko/homebrew-tap"
+tap "FelixKratz/formulae"
 
+cask "aerospace"
 cask "devtoys"
 cask "eloston-chromium"
 cask "font-fira-code"
@@ -35,6 +38,7 @@ cask "xquartz"
 
 
 brew "bat"
+brew "borders"
 brew "btop"
 brew "carapace"
 brew "cargo-nextest"

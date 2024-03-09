@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export COLOR_BACKGROUND=0xe01d2021
+export COLOR_ACCENT_BRIGHT=0xe0fe8019
+
+borders active_color=$COLOR_ACCENT_BRIGHT inactive_color=$COLOR_BACKGROUND width=4.0

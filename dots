@@ -18,7 +18,6 @@ ln -s "$dir/btop" "$HOME/.config/btop"
 ln -s "$dir/mpv" "$HOME/.config/mpv"
 ln -s "$dir/yabai" "$HOME/.config/yabai"
 ln -s "$dir/skhd" "$HOME/.config/skhd"
-ln -s "$dir/aerospace" "HOME/.config/aerospace"
 
 
 mkdir "$HOME/.gnupg"

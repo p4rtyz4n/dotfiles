@@ -75,6 +75,8 @@
 # TO INTERACT WITH THE YABAI WM. THESE ARE SUPPOSED TO BE USED AS #
 # A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
 # ############################################################### #
+# restart yabai
+ctrl + alt + cmd - r : yabai --restart-service
 
 # focus window
 alt - h : yabai -m window --focus west

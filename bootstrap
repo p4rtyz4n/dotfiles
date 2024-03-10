@@ -86,6 +86,23 @@ setup_homebrew() {
   fi
 }
 
+run_services() {
+  if which yabai > /dev/null 2>&1; then
+    log "start yabai service"
+    yabai --start-service
+  fi
+
+  if which skhd > /dev/null 2>&1; then
+    log "start skhd service"
+    skhd --start-service
+  fi
+  if which borders > /dev/null 2>&1; then
+    log "start JankyBorders service"
+    brew services start borders
+  fi
+}
+
+
 main() {
   export PATH="/opt/homebrew/bin:$PATH"
   printf "$blue"
@@ -110,6 +127,10 @@ main() {
       fi
       if ask "tune macOS system settings?"; then
         setup_darwin
+      fi
+
+      if ask "run services?"; then
+        run_services
       fi
       ;;
   esac

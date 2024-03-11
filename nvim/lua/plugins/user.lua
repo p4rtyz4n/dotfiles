@@ -2,12 +2,6 @@
 return {
   "ThePrimeagen/vim-be-good", --:VimBeGood
   "aznhe21/actions-preview.nvim",
-  --override in community
-  {
-    "mrcjkb/rustaceanvim",
-    version = "^4",
-    ft = "rust",
-  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = function(_, opts)

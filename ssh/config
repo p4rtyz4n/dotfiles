@@ -3,6 +3,7 @@ Include sites/*
 
 
 Host *
+  IgnoreUnknown UseKeychain
   UseKeychain yes
   AddKeysToAgent yes
   AddressFamily inet
@@ -16,3 +17,9 @@ Host *
   #KexAlgorithms diffie-hellman-group-exchange-sha256
   #Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
   Ciphers aes256-ctr,aes192-ctr,aes128-ctr
+
+
+Host steam-deck
+  HostName 192.168.100.11
+	User deck
+	IdentityFile ~/.ssh/deck_ed25519

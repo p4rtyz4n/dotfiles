@@ -2,6 +2,7 @@
 tap "homebrew/cask-fonts"
 tap "homebrew/bundle"
 tap "homebrew/services"
+tap "homebrew/autoupdate"
 tap "buo/cask-upgrade"
 tap "rsteube/homebrew-tap"
 tap "FelixKratz/formulae"
@@ -82,3 +83,5 @@ brew "yabai"
 brew "zoxide"
 brew "zsh"
 brew "zsh-completions"
+
+#brew  autoupdate start 43200 --upgrade --cleanup --immediate --sudo

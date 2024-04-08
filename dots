@@ -34,3 +34,6 @@ ln -s "$dir/zsh/.zprofile" "$HOME/.zprofile"
 ln -s "$dir/zsh/.zshenv" "$HOME/.zshenv"
 ln -s "$dir/zsh/.zshrc" "$HOME/.zshrc"
 ln -s "$dir/ssh/config" "$HOME/.ssh/config"
+
+
+ln -s "$dir/starship/starship.toml" "$HOME/.config/starship.toml"

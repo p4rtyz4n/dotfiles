@@ -18,6 +18,7 @@ ln -s "$dir/btop" "$HOME/.config/btop"
 ln -s "$dir/mpv" "$HOME/.config/mpv"
 ln -s "$dir/yabai" "$HOME/.config/yabai"
 ln -s "$dir/skhd" "$HOME/.config/skhd"
+ln -s "$dir/wezterm" "$HOME/.config/wezterm"
 
 
 mkdir "$HOME/.gnupg"

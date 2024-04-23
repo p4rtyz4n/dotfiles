@@ -72,8 +72,8 @@ Config.font_size = 11.5
 Config.cell_width = 1.0
 --Config.line_height = 1.2
 
-Config.underline_position = -2.5
-Config.underline_thickness = "2px"
+--Config.underline_position = -2.5
+--Config.underline_thickness = "2px"
 Config.warn_about_missing_glyphs = false
 
 --[[

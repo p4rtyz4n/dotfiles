@@ -18,7 +18,7 @@ wez.on("update-status", function(window, pane)
     lock_mode = { text = "  LOCK ", bg = theme.ansi[8] },
   }
 
-  local bg = theme.ansi[5]
+  local bg = theme.ansi[7]
   local mode_indicator_width = 0
 
   -- {{{1 LEFT STATUS

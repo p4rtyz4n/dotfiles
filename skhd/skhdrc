@@ -148,8 +148,8 @@ ctrl + alt - right   : yabai -m window --grid 1:2:1:0:1:1
 alt - e : yabai -m window --toggle split
 
 # send window to desktop and follow focus
-ctrl + shift - z : yabai -m window --space prev --focus
-ctrl + shift - x : yabai -m window --space next --focus
+#ctrl + shift - z : yabai -m window --space prev --focus
+#ctrl + shift - x : yabai -m window --space next --focus
 ctrl + shift - 1 : yabai -m window --space 1 --focus
 ctrl + shift - 2 : yabai -m window --space 2 --focus
 ctrl + shift - 3 : yabai -m window --space 3 --focus

@@ -14,7 +14,7 @@ require("lazy").setup({
   { import = "plugins" },
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
-  install = { colorscheme = { "gruvbox-baby", "catppuccin" } },
+  install = { colorscheme = { "gruvbox-baby" } },
   ui = { backdrop = 100 },
   performance = {
     rtp = {

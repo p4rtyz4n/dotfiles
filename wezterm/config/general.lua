@@ -12,7 +12,7 @@ Config.default_prog = { "/opt/homebrew/bin/nu" }
 Config.front_end = "WebGpu"
 Config.animation_fps = 60
 Config.max_fps = 120 --60
-Config.dpi = 144.0
+--Config.dpi = 144.0
 Config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 --Config.window_decorations = "RESIZE" --INTEGRATED_BUTTONS
 --[[Config.window_padding = {
@@ -20,6 +20,6 @@ Config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 	right = 0,
 	top = 0,
 	bottom = 0,
-}]]--
+}]]
+--
 return Config
-

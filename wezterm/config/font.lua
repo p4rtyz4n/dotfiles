@@ -69,7 +69,7 @@ Config.font = wez.font_with_fallback {
 }
 
 Config.font_size = 11.5
-Config.cell_width = 1.0
+--Config.cell_width = 1.0
 --Config.line_height = 1.2
 
 --Config.underline_position = -2.5

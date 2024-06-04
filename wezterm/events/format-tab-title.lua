@@ -19,7 +19,7 @@ wez.on("format-tab-title", function(tab, _, _, config, hover, max_width)
 
   ---set colors based on states
   if tab.is_active then
-    fg = theme.ansi[7]
+    fg = theme.ansi[7] --was 5
     attributes = { "Bold" }
   elseif hover then
     fg = theme.selection_bg

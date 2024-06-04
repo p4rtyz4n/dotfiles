@@ -34,6 +34,7 @@ wez.on("update-status", function(window, pane)
   -- }}}
 
   -- {{{1 RIGHT STATUS
+  --[[
   local RightStatus = StatusBar:new() ---@class Layout
 
   bg = wez.color.parse(bg)
@@ -87,6 +88,7 @@ wez.on("update-status", function(window, pane)
 
   window:set_right_status(wez.format(RightStatus))
   -- }}}
+  ]]--
 end)
 -- luacheck: pop
 

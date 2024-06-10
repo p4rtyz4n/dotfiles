@@ -18,5 +18,3 @@ for key, value in pairs(spec) do
 end
 
 return config
-
-

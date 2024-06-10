@@ -116,8 +116,35 @@ $env.PATH = ($env.PATH | split row (char esep)
     | prepend '~/.cargo/bin'
     | uniq)
 
-load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
+#load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
+
 load-env (/opt/homebrew/bin/brew shellenv | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
+
+export-env {
+  $env.config = ($env.config | upsert hooks {
+      env_change: {
+          PWD: ($env.config.hooks.env_change.PWD ++
+            [{
+              condition: {|before, after| [.nvmrc .node-version] | path exists | any { |it| $it }}
+	      code: {|before, after|
+                if ('FNM_DIR' in $env) {
+	          fnm use # Personally I prefer to use fnm --log-level=quiet use 
+		}
+	      }
+	  }]
+        )
+      }
+  })
+}
+
+
+if not (which fnm | is-empty) {
+  ^fnm env --json | from json | load-env
+  # Checking `Path` for Windows
+  let path = if 'Path' in $env { $env.Path } else { $env.PATH }
+  let node_path = $"($env.FNM_MULTISHELL_PATH)/bin"
+  $env.PATH = ($path | prepend [ $node_path ])
+}
 
 $env.PATH = ($env.PATH | split row (char esep)
   | append $"($env.FNM_MULTISHELL_PATH)/bin"

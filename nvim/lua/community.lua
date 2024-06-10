@@ -36,4 +36,8 @@ return {
   --{ import = "astrocommunity.scrolling.satellite-nvim", enabled = false },
   { import = "astrocommunity.scrolling.neoscroll-nvim" },
   { import = "astrocommunity.indent.indent-tools-nvim" },
+
+  { import = "astrocommunity.lsp.lspsaga-nvim" },
+  { import = "astrocommunity.completion.cmp-emoji" },
+  { import = "astrocommunity.completion.cmp-cmdline" },
 }

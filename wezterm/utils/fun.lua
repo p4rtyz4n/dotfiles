@@ -340,7 +340,7 @@ end
 ---@param path string
 ---@param len any
 M.pathshortener = function(path, len)
-  local path_separator = M.is_windows() and "\\" or "/"
+  local path_separator = "/"
   local splitted_path = M.split(path, path_separator)
   local short_path = ""
   for _, dir in ipairs(splitted_path) do

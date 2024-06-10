@@ -69,7 +69,11 @@ wez.on("update-status", function(window, pane)
   --~ }}}
 
   local status_bar_cells = {
-    { cwd, fun.pathshortener(cwd, 4), fun.pathshortener(cwd, 1) },
+    {
+      cwd,
+      fun.pathshortener(cwd, 4),
+      fun.pathshortener(cwd, 1),
+    },
     { hostname, hostname:sub(1, 1) },
     { wez.strftime "%a %b %-d %H:%M", wez.strftime "%d/%m %R", wez.strftime "%R" },
     { battery.full, battery.lvl .. "%", battery.ico },

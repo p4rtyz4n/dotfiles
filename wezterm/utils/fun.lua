@@ -153,16 +153,6 @@ M.tbl_merge = function(t1, ...)
   return t1
 end
 
----Returns the colorscheme name absed on the system appearance
----@return '"gruvbox-dark"'|'"gruvbox-light"' colorscheme name of the colorscheme
-M.get_scheme = function()
-  --if (wez.gui and wez.gui.get_appearance() or "Dark"):find "Dark" then
-  --  return "gruvbox-dark"
-  --end
-  --return "gruvbox-light"
-  return "gruvbox-dark"
-end
-
 M.gsplit = function(s, sep, opts)
   local plain
   local trimempty = false

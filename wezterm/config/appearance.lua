@@ -1,10 +1,9 @@
 ---@class Config
 local Config = {}
 
-local scheme = require("utils.fun").get_scheme()
-local theme = require("colors")[scheme]
-Config.color_schemes = require "colors"
-Config.color_scheme = scheme
+local theme = require("colors")
+Config.color_schemes =  { ["custom"] = theme }
+Config.color_scheme = "custom"
 
 Config.background = {
   {

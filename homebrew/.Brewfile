@@ -28,13 +28,14 @@ cask "suspicious-package"
 cask "vlc"
 cask "vscodium"
 cask "wezterm"
-cask "whisky"
+#cask "whisky"
 cask "xquartz"
 #cask "istat-menus"
 #cask "karabiner-elements"
 #cask "obsidian"
 #cask "rectangle-pro"
 #cask "adguard"
+#cask "hiddenbar"
 
 
 brew "bat"
@@ -84,5 +85,7 @@ brew "yabai"
 brew "zoxide"
 brew "zsh"
 brew "zsh-completions"
+
+brew "jordanbaird-ice"
 
 #brew  autoupdate start 43200 --upgrade --cleanup --immediate --sudo

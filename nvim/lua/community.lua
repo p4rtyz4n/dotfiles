@@ -15,10 +15,9 @@ return {
   { import = "astrocommunity.git.diffview-nvim" },
   { import = "astrocommunity.syntax.hlargs-nvim" },
 
-  --{ import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.colorscheme.gruvbox-baby" },
-  --{ import = "astrocommunity.colorscheme.kanagawa-nvim" },
-  --{ import = "astrocommunity.colorscheme.tokyonight-nvim" },
+  { import = "astrocommunity.colorscheme.nightfox-nvim" },
 
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.pack.markdown" },

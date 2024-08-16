@@ -1,8 +1,10 @@
 local wezterm = require "wezterm"
 local baseTheme = wezterm.get_builtin_color_schemes()["Gruvbox Dark (Gogh)"]
+--wezterm.color.load_scheme(wezterm.config_dir .. '/colors/nightfox.toml')
+--wezterm.get_builtin_color_schemes()["Gruvbox Dark (Gogh)"]
 --local baseTheme = wezterm.get_builtin_color_schemes()["Kanagawa (Gogh)"] --
 --local baseTheme = wezterm.get_builtin_color_schemes()["Catppuccin Mocha"]
-local background = "#1d2021" --gruvbox-hard "#282828"
+local background = baseTheme.background --other gruvbox "#1d2021" --gruvbox-hard "#282828"
 local foreground = baseTheme.foreground --"#ebdbb2"
 local override = {
   background = background,
@@ -52,6 +54,4 @@ for k, v in pairs(override) do
   scheme[k] = v
 end
 
-return {
-  ["gruvbox-dark"] = scheme,
-}
+return scheme

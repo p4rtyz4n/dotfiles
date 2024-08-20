@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "features": {
+    "inline_completion_provider": "none"
+  },
   "languages": {
     "TypeScript": {
       "formatter": {
@@ -54,16 +57,10 @@
       "cv31": true,
       "cv32": true
     },
-    "font_fallbacks": [
-      "Apple Color Emoji",
-      "Symbols Nerd Font"
-    ]
+    "font_fallbacks": ["Apple Color Emoji", "Symbols Nerd Font"]
   },
   "ui_font_family": "MonaspiceNe Nerd Font",
-  "ui_font_fallbacks": [
-    "Apple Color Emoji",
-    "Symbols Nerd Font"
-  ],
+  "ui_font_fallbacks": ["Apple Color Emoji", "Symbols Nerd Font"],
   "ui_font_features": {
     "calt": true,
     "liga": true,
@@ -111,8 +108,5 @@
     "cv31": true,
     "cv32": true
   },
-  "buffer_font_fallbacks": [
-    "Apple Color Emoji",
-    "Symbols Nerd Font"
-  ]
+  "buffer_font_fallbacks": ["Apple Color Emoji", "Symbols Nerd Font"]
 }

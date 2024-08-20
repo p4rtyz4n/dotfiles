@@ -4,10 +4,10 @@
 --       as this provides autocomplete and documentation while editing
 ---@type LazySpec
 return {
-  "AstroNvim/astroui",
-  ---@type AstroUIOpts
-  opts = {
-    -- change colorscheme
-    colorscheme = "gruvbox-baby",
-  },
+    "AstroNvim/astroui",
+    ---@type AstroUIOpts
+    opts = {
+        -- change colorscheme
+        colorscheme = "tokyonight-moon" --"catppuccin-mocha", --"gruvbox-baby",
+    },
 }

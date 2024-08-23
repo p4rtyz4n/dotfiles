@@ -1,6 +1,6 @@
 # Nushell Environment Config File
 #
-# version = "0.94.2"
+# version = "0.97.2"
 
 def create_left_prompt [] {
     let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
@@ -11,7 +11,7 @@ def create_left_prompt [] {
 
     let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
     let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
-    let path_segment = $"($path_color)($dir)"
+    let path_segment = $"($path_color)($dir)(ansi reset)"
 
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
@@ -77,6 +77,7 @@ $env.ENV_CONVERSIONS = {
 # The default for this is $nu.default-config-dir/scripts
 $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
+    ($nu.data-dir | path join 'completions') # default home for nushell completions
 ]
 
 # Directories to search for plugin binaries when calling register
@@ -118,7 +119,15 @@ $env.PATH = ($env.PATH | split row (char esep)
 
 #load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 
-load-env (/opt/homebrew/bin/brew shellenv | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
+load-env (/opt/homebrew/bin/brew shellenv
+    | lines
+    | str replace 'export ' ''
+    | str replace -a '"' ''
+    | split column '='
+    | rename name value
+    | where name != "PATH"
+    | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value }
+)
 
 export-env {
   $env.config = ($env.config | upsert hooks {
@@ -128,7 +137,7 @@ export-env {
               condition: {|before, after| [.nvmrc .node-version] | path exists | any { |it| $it }}
 	      code: {|before, after|
                 if ('FNM_DIR' in $env) {
-	          fnm use # Personally I prefer to use fnm --log-level=quiet use 
+	          fnm use # Personally I prefer to use fnm --log-level=quiet use
 		}
 	      }
 	  }]
@@ -156,12 +165,11 @@ $env.PATH = ($env.PATH | split row (char esep)
   | append $"(pyenv root)/shims"
   | uniq)
 
-
 # todo set into private file
 $env.OPENAI_API_KEY = (do { security find-generic-password -w -s 'OPEN_API' -a 'ACCESS_KEY'} | complete).stdout
 $env.HOMEBREW_GITHUB_API_TOKEN = (do { security find-generic-password -w -s 'GITHUB' -a 'HOMEBREW_GITHUB_API_TOKEN' } | complete).stdout
 
 
 
-$env.EDITOR = nvim
-$env.VISUAL = code
+$env.EDITOR = "nvim"
+$env.VISUAL = "code"

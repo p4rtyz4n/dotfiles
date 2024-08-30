@@ -1,5 +1,5 @@
 ---@class WezTerm
-local wez = require "wezterm"
+local wt = require "wezterm"
 
 ---@class Config
 local Config = {}
@@ -7,18 +7,6 @@ local Config = {}
 Config.adjust_window_size_when_changing_font_size = false
 Config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 Config.anti_alias_custom_block_glyphs = true
-
---[[	"calt=1",
-			"liga=1",
-			"dlig=1",
-			"ss01=1",
-			"ss02=1",
-			"ss03=1",
-			"ss04=1",
-			"ss05=1",
-			"ss06=1",
-			"ss07=1",
-			"ss08=1",]]
 
 local monaspace_features = {
   "calt",
@@ -55,7 +43,7 @@ local monaspace_features = {
   "cv32", ---styles: .=
 }
 
-Config.font = wez.font_with_fallback {
+Config.font = wt.font_with_fallback {
   {
     family = "MonaspiceNe Nerd Font",
     weight = "Regular",
@@ -75,38 +63,5 @@ Config.font_size = 11.5
 --Config.underline_position = -2.5
 --Config.underline_thickness = "2px"
 Config.warn_about_missing_glyphs = false
-
---[[
-Config.font_rules = {
-  {
-    intensity = "Normal",
-    italic = true,
-    font = wez.font_with_fallback {
-      {
-        family = "Monaspace Radon Var",
-        style = "Normal",
-        weight = "Regular",
-        stretch = "Expanded",
-        harfbuzz_features = monaspace_features,
-      },
-      { family = "Symbols Nerd Font" },
-    },
-  },
-  {
-    intensity = "Bold",
-    italic = true,
-    font = wez.font_with_fallback {
-      {
-        family = "Monaspace Krypton Var",
-        style = "Italic",
-        weight = "Black",
-        harfbuzz_features = monaspace_features,
-        scale = 1.1,
-      },
-      { family = "Symbols Nerd Font" },
-    },
-  },
-}]]
---
 
 return Config

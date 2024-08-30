@@ -1,9 +1,17 @@
+local wezterm = require "wezterm"
+local Utils = require "utils"
+
+local color = Utils.fn.color
+local fs = Utils.fn.fs
+
 ---@class Config
 local Config = {}
 
-local theme = require("colors")
-Config.color_schemes =  { ["custom"] = theme }
-Config.color_scheme = "custom"
+--local theme = wezterm.get_builtin_color_schemes()["Tokyo Night Moon"] //default is broken
+local theme = wezterm.color.load_scheme(wezterm.config_dir .. "/themes/tokyonight_moon.toml")
+--local theme = Config.color_schemes[Config.color_scheme]
+Config.color_schemes =  { ["Tokyo Night Moon"] = theme }
+Config.color_scheme = "Tokyo Night Moon"
 
 Config.background = {
   {
@@ -12,6 +20,7 @@ Config.background = {
     height = "100%",
   },
 }
+
 
 Config.bold_brightens_ansi_colors = "BrightAndBold"
 
@@ -79,15 +88,6 @@ Config.skip_close_confirmation_for_processes_named = {
 }
 Config.window_close_confirmation = "AlwaysPrompt"
 
----new tab button
-Config.tab_bar_style = {}
-for _, tab_button in ipairs { "new_tab", "new_tab_hover" } do
-  Config.tab_bar_style[tab_button] = require("wezterm").format {
-    { Text = require("utils.icons").Separators.TabBar.right },
-    { Text = " + " },
-    { Text = require("utils.icons").Separators.TabBar.left },
-  }
-end
+color.set_tab_button(Config, theme)
 
 return Config
-

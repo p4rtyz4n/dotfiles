@@ -1,7 +1,7 @@
 local wezterm = require "wezterm"
 local baseTheme =
 --wezterm.color.load_scheme(wezterm.config_dir .. "/colors/catppuccin-mocha.toml")
-    wezterm.color.load_scheme(wezterm.config_dir .. "/colors/tokyonight_moon.toml")
+    wezterm.color.load_scheme(wezterm.config_dir .. "/themes/tokyonight_moon.toml")
 --wezterm.color.load_scheme(wezterm.config_dir .. "/colors/tokyonight_night.toml")
 --wezterm.color.load_scheme(wezterm.config_dir .. "/colors/nightfox.toml")
 

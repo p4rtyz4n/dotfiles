@@ -2,12 +2,12 @@
 local wez = require "wezterm"
 
 local icons = require "utils.icons" ---@class Icons
-local fun = require "utils.fun" ---@class Fun
+local fs = require("utils.fn").fs
 
 ---@class Config
 local Config = {}
 
-Config.default_cwd = fun.home
+Config.default_cwd = fs.home()
 Config.default_prog = { "/opt/homebrew/bin/nu" }
 Config.front_end = "WebGpu"
 Config.animation_fps = 60

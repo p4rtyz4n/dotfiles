@@ -1,4 +1,4 @@
-return require("utils.fun").tbl_merge(
+return require("utils.fn").tbl_merge(
   (require "config.appearance"),
   (require "config.font"),
   (require "config.tab-bar"),

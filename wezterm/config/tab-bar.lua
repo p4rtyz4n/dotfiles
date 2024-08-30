@@ -1,4 +1,3 @@
----@class Config
 local Config = {}
 
 Config.enable_tab_bar = true
@@ -13,4 +12,3 @@ Config.tab_max_width = 25
 Config.use_fancy_tab_bar = false
 
 return Config
-

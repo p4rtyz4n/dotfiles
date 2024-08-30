@@ -500,8 +500,13 @@ M.str.format_tab_title = function(tab, config, max_width)
 
     ---instead of truncating the whole title, truncate to length the cwd to ensure that the
     ---right parenthesis always closes.
-    if max_width == config.tab_max_width then
+    --if max_width == config.tab_max_width then
+    if string.len(cwd) >= max_width then
       cwd = wt.truncate_right(cwd, max_width - 14) .. "..."
+    end
+
+    if string.len(cwd) >= config.tab_max_width then
+      cwd = wt.truncate_right(cwd, config.tab_max_width - 14) .. "..."
     end
 
     title = ("%s ( %s)"):format(Icon.Progs[proc], cwd)
@@ -510,10 +515,16 @@ M.str.format_tab_title = function(tab, config, max_width)
   title = title:gsub(M.fs.basename(M.fs.home()) .. '/', "󰋜 /")
   title = title:gsub("~", "󰋜 ")
 
-  ---truncate the tab title when it overflows the maximum available space, then concatenate
-  ---some dots to indicate the occurred truncation
-  if is_truncation_needed and string.len(title) >= config.tab_max_width then
+ 
+  if is_truncation_needed and
+   (string.len(title) >= config.tab_max_width or string.len(title) >= max_width)
+  then
     local folderName = M.fs.basename(pane.current_working_dir.file_path)
+    
+    if string.len(folderName) >= max_width then
+      folderName = wt.truncate_right(folderName, max_width - 8) .. "..."
+    end
+
     if string.len(folderName) >= config.tab_max_width then
       folderName = wt.truncate_right(folderName, config.tab_max_width - 8) .. "..."
     end

@@ -8,7 +8,6 @@ local wt = require "wezterm"
 local G = wt.GLOBAL ---@diagnostic disable-line: undefined-field
 
 local Icon = require("utils").class.icon
-local Logger = require("utils").class.logger
 
 local wcwidth, codes = require "utils.external.wcwidth", require("utf8").codes
 local floor, ceil = math.floor, math.ceil
@@ -224,26 +223,11 @@ M.fs.pathshortener = function(path, len)
   return short_path
 end
 
----Concatenates a vararg list of values to a single string
----@vararg string
----@return string path The concatenated path
 M.fs.pathconcat = function(...)
   local paths = { ... }
   return table.concat(paths, M.fs.path_separator)
 end
 
----Reads the contents of a directory and returns a list of absolute filenames.
----@param directory string absolute path to the directory to read.
----@return table|nil files list of files present in the directory. nil if not accessible.
----
----@usage
----~~~lua
----local directory = "/path/to/your/directory"
----local files = M.fs.read_dir(directory)
----for _, file in ipairs(files) do
----  print(file)
----end
----~~~
 M.fs.read_dir = function(directory)
   if G.dirs_read and G.dirs_read[directory] then
     return G.dirs_read[directory]
@@ -305,10 +289,6 @@ M.mt.mround = function(number, multiple)
   return number - remainder + (remainder > multiple * 0.5 and multiple or 0)
 end
 
----Converts a float into an integer.
----@param number number
----@param increment? number
----@return integer result
 M.mt.toint = function(number, increment)
   if increment then
     return floor(number / increment) * increment
@@ -316,19 +296,9 @@ M.mt.toint = function(number, increment)
   return number >= 0 and floor(number + 0.5) or ceil(number - 0.5)
 end
 
--- }}}
-
--- {{{1 Utils.Fn.String
-
----@class Utils.Fn.String
 M.str = {}
 
----Calculate the printable length of first "num" characters of string "str" on a
----terminal. Returns the number of cells or -1 if the string contains non-printable
----characters. Raises an error on invalid UTF8 input.
----@param str string input string
----@param num? integer
----@return number|-1
+
 M.str.strwidth = function(str, num)
   local cells = 0
   if num then
@@ -355,10 +325,6 @@ M.str.strwidth = function(str, num)
   return cells
 end
 
----Returns a padded string and ensures that it's not shorter than 2 chars.
----@param s string input string
----@param padding? integer left/right padding. defaults to 1
----@return string s the padded string
 M.str.pad = function(s, padding)
   s = type(s) ~= "string" and tostring(s) or s
   padding = padding or 1
@@ -367,24 +333,7 @@ M.str.pad = function(s, padding)
   return ("%s%s%s"):format(pad, s, pad)
 end
 
----Splits a string into an iterator of substrings based on a separator pattern.
----
----This function returns an iterator that yields substrings from the input string `s`
----separated by the specified pattern `sep`. It supports optional parameters to treat
----the separator as plain text and to trim empty segments.
----
----@usage
----~~~lua
----for segment in M.str.gsplit("a,b,c", ",") do
----  print(segment)  -- Outputs: "a", "b", "c"
----end
----~~~
----
----@param s string The input string to split.
----@param sep string The separator pattern to split the string by.
----@param opts? table|nil Optional parameters: `plain` (boolean): If true, treats the separator as plain text. `trimempty` (boolean): If true, trims empty segments from the start and end.
----@return function f An iterator function that returns the next substring on each call.
----
+
 M.str.gsplit = function(s, sep, opts)
   local plain, trimempty
   opts = opts or {}
@@ -449,24 +398,6 @@ M.str.gsplit = function(s, sep, opts)
   end
 end
 
----Splits a string into a table of substrings based on a separator pattern.
----
----This function splits the input string `s` into substrings separated by the specified
----pattern `sep` and returns these substrings in a table. It supports optional parameters
----to treat the separator as plain text and to trim empty segments.
----
----@usage
----~~~lua
----local result = M.str.split("a,b,c", ",")
----for _, segment in ipairs(result) do
----  print(segment)  -- Outputs: "a", "b", "c"
----end
----~~~
----
----@param s string The input string to split.
----@param sep string The separator pattern to split the string by.
----@param opts? table|nil Optional parameters: `plain` (boolean): If true, treats the separator as plain text. `trimempty` (boolean): If true, trims empty segments from the start and end.
----@return table t A table containing the substrings.
 M.str.split = function(s, sep, opts)
   local t = {}
   for c in M.str.gsplit(s, sep, opts) do
@@ -535,13 +466,6 @@ M.str.format_tab_title = function(tab, config, max_width)
   return title
 end
 
--- }}}
-
--- {{{1 Utils.Fn.Keymap
-
----@class Utils.Fn.Keymap
----@field private aliases   table
----@field private modifiers table
 M.key = {
   aliases = {
     CR = "Enter",
@@ -563,29 +487,6 @@ M.key = {
   modifiers = { C = "CTRL", S = "SHIFT", W = "SUPER", M = "ALT" },
 }
 
----@private
----nil checks the given parameters.
----@param log Utils.Class.Logger logger object to log to console
----@param lhs string? keymap
----@param rhs (string|table)? keymap action
----@param tbl table? table to fill with keymap
----@return nil
-M.key.__check = function(log, lhs, rhs, tbl)
-  if not lhs then
-    return log:error("cannot map %s without lhs!", rhs)
-  elseif not rhs then
-    return log:error("cannot map %s to a nil action!", lhs)
-  elseif not tbl then
-    return log:error "cannot add keymaps! No table given"
-  end
-end
-
----@private
----
----Check if the given keymap contains the given pattern
----@param lhs string
----@param pattern string
----@return boolean
 M.key.__has = function(lhs, pattern)
   return lhs:find(pattern) ~= nil
 end
@@ -608,31 +509,7 @@ M.key.__has_leader = function(lhs, mods)
   return lhs
 end
 
----Maps an action using (n)vim-like syntax.
----
----This function allows you to map a key or a combination of keys to a specific action,
----using a syntax similar to that of (n)vim. The mapped keys and actions are inserted
----into the provided table.
----
----@param lhs string key or key combination to map.
----@param rhs string|table valid `wezterm.action.<action>` to execute upon keypress.
----@param tbl table table in which to insert the keymaps.
----
----**Example usage*+
----
----~~~lua
----local keymaps = {}
----M.key.map("<leader>a", wezterm.action.ActivateTab(1), keymaps)
----M.key.map("<C-a>", wezterm.action.ActivateTab(2), keymaps)
----M.key.map("b", wezterm.action.SendString("hello"), keymaps)
----~~~
 M.key.map = function(lhs, rhs, tbl)
-  local log = Logger:new "key.map()"
-  M.key.__check(log, lhs, rhs, tbl)
-
-  ---Inserts the given keymap in the table
-  ---@param mods? table modifiers. defaults to `""`
-  ---@param key string key to press.
   local function __map(key, mods)
     tbl[#tbl + 1] = { key = key, mods = table.concat(mods or {}, "|"), action = rhs }
   end
@@ -664,7 +541,7 @@ M.key.map = function(lhs, rhs, tbl)
 
   local k = keys[#keys]
   if modifiers[k] then
-    return log:error "keymap cannot end with modifier!"
+    return wt.log_error "keymap cannot end with modifier!"
   else
     keys[#keys] = nil
   end

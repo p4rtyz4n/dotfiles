@@ -2,103 +2,8 @@
 ---@author sravioli
 ---@license GNU-GPLv3
 
----@diagnostic disable-next-line: undefined-field
 local nf = require("wezterm").nerdfonts
 
--- {{{1 META
-
---~ {{{2 Icons.Sep
-
----Tabs bar separators
----@class Utils.Class.Icons.Sep.tb
----@field leftmost string `▐`
----@field left     string ``
----@field right    string ``
----
----Status-bar separators
----@class Utils.Class.Icons.Sep.sb
----@field left  string ``
----@field right string ``
----@field modal string ``
----
----Separators
----@class Utils.Class.Icons.Sep
----@field sb    Utils.Class.Icons.Sep.sb
----@field tb    Utils.Class.Icons.Sep.tb
----@field block string `█`
-
---~ }}}
-
---~ {{{2 Icons.Bat
-
----Icons for a full battery
----@class Utils.Class.Icons.Bat.Full
----@field ["100"] string `󰁹`
----
----Icons for a charging battery
----@class Utils.Class.Icons.Bat.Charging
----@field ["00"]  string `󰂃`
----@field ["10"]  string `󰢜
----@field ["20"]  string `󰂆
----@field ["30"]  string `󰂇
----@field ["40"]  string `󰂈
----@field ["50"]  string `󰢝
----@field ["60"]  string `󰂉
----@field ["70"]  string `󰢞
----@field ["80"]  string `󰂊
----@field ["90"]  string `󰂋
----@field ["100"] string `󰂅`
----
----Icons for a discharging battery
----@class Utils.Class.Icons.Bat.Discharging
----@field ["00"]  string `󰂎`
----@field ["10"]  string `󰁺`
----@field ["20"]  string `󰁻`
----@field ["30"]  string `󰁼`
----@field ["40"]  string `󰁽`
----@field ["50"]  string `󰁾`
----@field ["60"]  string `󰁿`
----@field ["70"]  string `󰂀`
----@field ["80"]  string `󰂁`
----@field ["90"]  string `󰂂`
----@field ["100"] string `󰁹`
----
----Collection of battery icons
----@class Utils.Class.Icons.Bat
----@field Full        Utils.Class.Icons.Bat.Full
----@field Charging    Utils.Class.Icons.Bat.Charging
----@field Discharging Utils.Class.Icons.Bat.Discharging
-
---~ }}}
-
---~ {{{2 Icons.Nums
-
----{ 󰬺, 󰬻, 󰬼, 󰬽, 󰬾, 󰬿, 󰭀, 󰭁, 󰭂, 󰿩 }
----@class Utils.Class.Icons.Nums: string[]
-
---~ }}}
-
---~ {{{2 Icons.Progs
-
----Indexed list of programs names and their respective icons
----@class Utils.Class.Icons.Progs: table<string: string>
-
---~ }}}
-
---~ {{{2 Utils.Class.Icons
-
----@class Utils.Class.Icons
----@field Sep          Utils.Class.Icons.Sep
----@field Bat          Utils.Class.Icons.Bat
----@field Nums         Utils.Class.Icons.Nums
----@field Progs        Utils.Class.Icons.Progs
----@field Notification string ``
-
---~ }}}
-
--- }}}
-
----@class Utils.Class.Icons
 local M = {}
 
 M.Notification = nf.cod_circle_small_filled
@@ -203,5 +108,3 @@ M.Progs = {
 }
 
 return M
-
--- vim: fdm=marker fdl=1

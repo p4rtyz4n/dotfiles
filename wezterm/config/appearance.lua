@@ -4,7 +4,6 @@ local Utils = require "utils"
 local color = Utils.fn.color
 local fs = Utils.fn.fs
 
----@class Config
 local Config = {}
 
 --local theme = wezterm.get_builtin_color_schemes()["Tokyo Night Moon"] //default is broken

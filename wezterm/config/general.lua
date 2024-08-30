@@ -1,10 +1,8 @@
----@class WezTerm
 local wez = require "wezterm"
 
-local icons = require "utils.icons" ---@class Icons
+local icons = require "utils.icons"
 local fs = require("utils.fn").fs
 
----@class Config
 local Config = {}
 
 Config.default_cwd = fs.home()

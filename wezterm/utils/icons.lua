@@ -1,24 +1,15 @@
 ---Nerd fonts aggregated by type/class/etc.
----@class Icons
+
 local M = {}
 
----@class WezTerm
 local wez = require "wezterm"
 
----@class SeparatorsIcons: StatusBarIcons, TabBarIcons
 M.Separators = {
-  ---@class StatusBarIcons: string, string
-  ---@field left  string ``
-  ---@field right string ``
   StatusBar = {
     left = wez.nerdfonts.pl_left_hard_divider,
     right = wez.nerdfonts.pl_right_hard_divider,
   },
 
-  ---@class TabBarIcons: string, string, string
-  ---@field leftmost string `▐`
-  ---@field left     string ``
-  ---@field right    string ``
   TabBar = {
     leftmost = "▐",
     left = wez.nerdfonts.ple_upper_right_triangle,
@@ -36,9 +27,6 @@ M.Bash = wez.nerdfonts.md_bash
 
 M.Git = wez.nerdfonts.md_git
 
----@class BatteryIcons: table, table
----@field charging table Icons for charging battery in increments of 10
----@field normal   table Icons for non-charging battery in increments of 10
 M.Battery = {
   Full = {
     ["100"] = wez.nerdfonts.md_battery,

@@ -12,19 +12,9 @@ local Icon = require("utils").class.icon
 local wcwidth, codes = require "utils.external.wcwidth", require("utf8").codes
 local floor, ceil = math.floor, math.ceil
 
----User defined utility functions
----@class Utils.Fn
----@field fs    Utils.Fn.FileSystem
----@field mt    Utils.Fn.Maths
----@field str   Utils.Fn.String
----@field key   Utils.Fn.Keymap
----@field color Utils.Fn.Color
+
 local M = {}
 
----Merges two tables
----@param t1 table
----@param ... table[] one or more tables to merge
----@return table t1 modified t1 table
 M.tbl_merge = function(t1, ...)
   local tables = { ... }
 
@@ -46,10 +36,6 @@ M.tbl_merge = function(t1, ...)
   return t1
 end
 
----Memoize the function return value in the given `wezterm.GLOBAL` key
----@param key string key in which to memoize fn return value
----@param value any function to memoize
----@return any value function that returns the cached value
 M.gmemoize = function(key, value)
   local is_fn = type(value) == "function"
   if G[key] == nil then
@@ -60,30 +46,10 @@ M.gmemoize = function(key, value)
   end or value
 end
 
--- {{{1 Utils.Fn.FileSystem
-
----@class Utils.Fn.FileSystem
----@field private target_triple string
 M.fs = {}
 
 M.fs.target_triple = M.gmemoize("target_triple", wt.target_triple)
 
--- {{{2 META
-
----@class Utils.Fn.FileSystem.Platform
----@field os "windows"|"linux"|"mac"|"unknown" The operating system name
----@field is_win boolean Whether the platform is Windows.
----@field is_linux boolean Whether the platform is Linux.
----@field is_mac boolean Whether the platform is Mac.
-
--- }}}
-
----Determines the platform based on the target triple.
----
----This function checks the target triple string to determine if the platform is Windows,
----Linux, or macOS.
----
----@return Utils.Fn.FileSystem.Platform platform
 M.fs.platform = M.gmemoize("plaftorm", function()
   local is_win = M.fs.target_triple:find "windows" ~= nil
   local is_linux = M.fs.target_triple:find "linux" ~= nil
@@ -94,40 +60,18 @@ end)
 
 local is_win = M.fs.platform().is_win
 
----Gets the user home directory.
----
----This function retrieves the home directory path from environment variables or fallback
----sources and replaces backslashes with forward slashes.
----
----@return string home The path to the user home directory.
 M.fs.home = M.gmemoize("home", function()
   return ((os.getenv "USERPROFILE" or os.getenv "HOME" or wt.home or ""):gsub("\\", "/"))
 end)
 
----Path separator based on the platform.
----
----This variable holds the appropriate path separator character for the current platform.
 M.fs.path_separator = M.gmemoize("path_separator", is_win and "\\" or "/")
 
----Equivalent to POSIX `basename(3)`.
----
----This function extracts the base name (the final component) from a given path.
----
----@param path string Any string representing a path.
----@return string str The base name of the path.
 M.fs.basename = function(path)
   local trimmed_path = path:gsub("[/\\]*$", "")
   local index = trimmed_path:find "[^/\\]*$"
   return index and trimmed_path:sub(index) or trimmed_path
 end
 
----Searches for the git project root directory of the given directory path.
----
----This function traverses up the directory tree to find the `.git` directory, indicating
----the root of a git project.
----
----@param directory string The directory path to start searching from.
----@return string|nil git_root If found, the `git_root`, else `nil`.
 M.fs.find_git_dir = function(directory)
   directory = directory:gsub("~", M.fs.home())
 
@@ -147,16 +91,6 @@ M.fs.find_git_dir = function(directory)
   return nil
 end
 
----Returns the current working directory and the hostname.
----
----This function retrieves the current working directory and the hostname from the
----provided pane object. Optionally, it can search for the git root instead.
----
----@param pane table The wezterm pane object.
----@param search_git_root_instead? boolean Whether to search for the git root instead.
----@return string cwd The current working directory.
----@return string hostname The hostname.
----@see Utils.Fn.FileSystem.find_git_dir
 M.fs.get_cwd_hostname = function(pane, search_git_root_instead)
   local cwd, hostname = "", ""
   local cwd_uri = pane:get_current_working_dir()
@@ -200,13 +134,6 @@ M.fs.get_cwd_hostname = function(pane, search_git_root_instead)
   return cwd, hostname
 end
 
----Shortens the given path.
----
----This function truncates each component of a given path to a specified length.
----
----@param path string The path to shorten.
----@param len number The maximum length for each component of the path.
----@return string short_path
 M.fs.pathshortener = function(path, len)
   local splitted_path = M.str.split(path, M.fs.path_separator)
   local short_path = ""
@@ -266,24 +193,15 @@ M.fs.read_dir = function(directory)
   G.dirs_read = { [directory] = files }
   return G.dirs_read[directory]
 end
--- }}}
 
--- {{{1 Utils.Fn.Maths
 
----@class Utils.Fn.Maths
 M.mt = {}
 
----Rounds the given number to the nearest integer
----@param number number
----@return integer result closest integer number
 M.mt.round = function(number)
   return floor(number + 0.5)
 end
 
----Rounds the given number to the nearest multiple given.
----@param number number Any number.
----@param multiple number Any number.
----@return number result floating point number rounded to the closest multiple.
+
 M.mt.mround = function(number, multiple)
   local remainder = number % multiple
   return number - remainder + (remainder > multiple * 0.5 and multiple or 0)
@@ -491,16 +409,6 @@ M.key.__has = function(lhs, pattern)
   return lhs:find(pattern) ~= nil
 end
 
----@private
----
----Checks if the given keymap contains the `<leader>` prefix.
----
----If `^<leader>` is found it gets removed from the keymap and added to the mods table.
----
----@param lhs string keymap to check
----@param mods table modifiers table that gets eventually filled with the `"LEADER"` mod
----@return string lhs keymap with `^<leader>` removed (if found)
----@nodiscard
 M.key.__has_leader = function(lhs, mods)
   if M.key.__has(lhs, "^<leader>") then ---leader should always be the fist keymap
     lhs = (lhs:gsub("^<leader>", ""))
@@ -554,34 +462,8 @@ M.key.map = function(lhs, rhs, tbl)
   return __map(k, mods)
 end
 
--- }}}
-
--- {{{1 Utils.Fn.Color
-
----@class Utils.Fn.Color
 M.color = {}
 
----Sets the tab button style in the configuration based on the specified theme.
----
----This function updates the `config` object to set the style for the tab buttons
----(`new_tab` and `new_tab_hover`) using the color scheme provided in the `theme` object.
----It constructs the button layout with appropriate colors, separators, and text attributes.
----
----@usage
----~~~lua
----local config = {}
----local theme = {
----  tab_bar = {
----    new_tab = { bg_color = "#000000", fg_color = "#FFFFFF", intensity = "Bold" },
----    new_tab_hover = { bg_color = "#111111", fg_color = "#EEEEEE", italic = true },
----    background = "#222222"
----  }
----}
----M.color.set_tab_button(config, theme)
----~~~
----
----@param config table The configuration object to be updated with tab button styles.
----@param theme table The theme object containing color schemes for different tab states.
 M.color.set_tab_button = function(config, theme)
   config.tab_bar_style = {}
   local sep = require("utils.class.icon").Sep.tb
@@ -606,8 +488,4 @@ M.color.set_tab_button = function(config, theme)
   end
 end
 
--- }}}
-
 return M
-
--- vim: fdm=marker fdl=0

@@ -12,7 +12,6 @@ local Icon = require("utils").class.icon
 local wcwidth, codes = require "utils.external.wcwidth", require("utf8").codes
 local floor, ceil = math.floor, math.ceil
 
-
 local M = {}
 
 M.tbl_merge = function(t1, ...)
@@ -194,13 +193,11 @@ M.fs.read_dir = function(directory)
   return G.dirs_read[directory]
 end
 
-
 M.mt = {}
 
 M.mt.round = function(number)
   return floor(number + 0.5)
 end
-
 
 M.mt.mround = function(number, multiple)
   local remainder = number % multiple
@@ -215,7 +212,6 @@ M.mt.toint = function(number, increment)
 end
 
 M.str = {}
-
 
 M.str.strwidth = function(str, num)
   local cells = 0
@@ -250,7 +246,6 @@ M.str.pad = function(s, padding)
   local pad = (" "):rep(padding)
   return ("%s%s%s"):format(pad, s, pad)
 end
-
 
 M.str.gsplit = function(s, sep, opts)
   local plain, trimempty
@@ -361,15 +356,15 @@ M.str.format_tab_title = function(tab, config, max_width)
     title = ("%s ( %s)"):format(Icon.Progs[proc], cwd)
   end
 
-  title = title:gsub(M.fs.basename(M.fs.home()) .. '/', "󰋜 /")
+  title = title:gsub(M.fs.basename(M.fs.home()) .. "/", "󰋜 /")
   title = title:gsub("~", "󰋜 ")
 
- 
-  if is_truncation_needed and
-   (string.len(title) >= config.tab_max_width or string.len(title) >= max_width)
+  if
+    is_truncation_needed
+    and (string.len(title) >= config.tab_max_width or string.len(title) >= max_width)
   then
     local folderName = M.fs.basename(pane.current_working_dir.file_path)
-    
+
     if string.len(folderName) >= max_width then
       folderName = wt.truncate_right(folderName, max_width - 8) .. "..."
     end

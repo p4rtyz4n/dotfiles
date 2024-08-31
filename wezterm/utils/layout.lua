@@ -1,4 +1,3 @@
-
 local Layout = {}
 
 function Layout:new()
@@ -39,4 +38,3 @@ function Layout:push(background, foreground, text, attributes)
 end
 
 return Layout
-
